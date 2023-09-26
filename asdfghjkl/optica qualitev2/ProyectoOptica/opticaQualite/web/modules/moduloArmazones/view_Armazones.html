@@ -1,0 +1,126 @@
+<!-- Modulo de compras -->
+<div class="container-fluid row d-flex justify-content-md-center" style="margin-top: 10px">
+
+    <div class="card col-lg-4 m-2 p-4">
+        <h2 class="text-center">Armazones</h2>
+        <form class="needs-validation">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="txtIdProducto" class="mt-2 ">Id producto</label>
+                    <input id="txtIdProducto" class="form-control mt-2" type="text" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtIdArmazon" class="mt-2 ">Id Armazon</label>
+                    <input id="txtIdArmazon" class="form-control mt-2" type="text" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtCodigoBarras" class="mt-2 ">Código de barras</label>
+                    <input id="txtCodigoBarras" class="form-control mt-2" type="text" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtNombre" class="mt-2 ">Nombre: <sup style="color: red">*</sup> </label>
+                    <input id="txtNombre" type="text" class="mt-2 form-control" placeholder="ej. NJnegro" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtModelo" class="mt-2">Modelo: <sup style="color: red">*</sup> </label><br>
+                    <input id="txtModelo" type="text"  class="mt-2 form-control" placeholder="ej. M01234" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtMarca" class="mt-2">Marca: <sup style="color: red">*</sup> </label><br>
+                    <input id="txtMarca" type="text"  class="mt-2 form-control" placeholder="ej. Cafsen" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtColor" class="mt-2">Color: <sup style="color: red">*</sup> </label>
+                    <input id="txtColor" type="text"  class="mt-2 form-control" placeholder="ej. Plateado" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtDescripcion" class="mt-2">Descripción: <sup style="color: red">*</sup> </label>
+                    <input id="txtDescripcion" type="text"  class="mt-2 form-control" placeholder="ej. Redondos" required>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <img id="imgFoto" src="" style="width:150px; height: 156px;"/>
+                    </div>
+                    <br>
+                    <div>
+                        <button id="btnSeleccionarImagen" class="btn btn-success"> Cargar Imagen</button>
+                    </div>
+                    <div>       
+                        <input id="txtFoto" type="file"  class="mt-2 form-control" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtDimensiones" class="mt-2">Dimensiones: <sup style="color: red">*</sup> </label>
+                    <input id="txtDimensiones" type="text"  class="mt-2 form-control" placeholder="ej. 15X15" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="txtExistencia" class="mt-2">Existencias: <sup style="color: red">*</sup> </label>
+                    <input id="txtExistencia" type="number"  class="mt-2 form-control" required placeholder="ej. 40">
+                </div>
+                <div class="col-md-6">
+                    <label for="txtPrecioCompra" class="mt-2">Precio de compra:  <sup style="color: red">*</sup> </label>
+                    <input id="txtPrecioCompra" type="number" class="mt-2 form-control" required placeholder="ej. $800">
+                </div>
+                <div class="col-md-6">
+                    <label for="txtPrecioVenta" class="mt-2">Precio de venta: <sup style="color: red">*</sup> </label>
+                    <input id="txtPrecioVenta" type="number" class="mt-2 form-control" required placeholder="ej. $1000">
+                </div>
+                <div class="col-md-6">
+                    <textarea id="txtaCodigoImagen" class="form-control" placeholder=""></textarea>
+                    <label for="txtaCodigoImagen">CB64</label>
+                </div>
+
+
+
+            </div>
+
+            <div class="d-flex justify-content-around mt-2">
+                <button class="mt-2 btn btn-lg" onclick="moduloArmazon.addArmazon();" id="btnAdd" style="background: #011866"><img src="resources/g.png" style="height: 25px; width: 25px;"></button>
+                <button class="mt-2 btn btn-lg disabled" onclick="moduloArmazon.updateArma();" id="btnUpdate" style="background: #011866"><img src="resources/a.png" style="height: 35px; width: 25px;"></button>
+                <button class="mt-2 btn btn-lg disabled" onclick="moduloArmazon.deleteArma();" id="btnDelete" style="background: #011866"><img src="resources/d.png" style="height: 25px; width: 25px;"></button>
+            </div>
+        </form>
+    </div>
+
+    <div class="card col-lg-7  p-1 m-2" style="margin-bottom: 10px">
+        <div class="d-flex m-3">
+            <label for="txtBusquedaCompra" class="form-label mx-3">Buscar armazón: </label>
+            <input type="text" id="txtBusquedaCompra" placeholder="Buscar marca">
+            <button class="btn mx-2" onclick="moduloArmazon.searchArma();" style="background: #011866">
+                <img src="resources/b.png" style="height: 25px; width: 25px;">
+            </button>
+            <select name="esta" id="esta" onclick="moduloArmazon.cargartabla();">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+            </select>
+            <div style="padding-left: 210px;">
+                <button class="btn mx-2" onclick="moduloArmazon.imprimir('tabla')" style="background: #011866">
+                    <img src="
+                         resources/i.png" alt="" style="height: 25px; width: 25px;"/>
+                </button>
+            </div>
+        </div>
+        <div id="tabla">
+            <table class="table table-hover">
+                <thead class="table-dark" id="tb2">
+                    <tr>
+                        <th>Clave</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>Existencias</th>
+                        <th>Dimenciones</th>
+                        <th>Descripcion</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tblCompras">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

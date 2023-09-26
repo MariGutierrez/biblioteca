@@ -1,0 +1,203 @@
+<!-- Modulo de empleados -->
+<div class="container-fluid row d-flex" style="margin-top: 10px">
+    <div class="card col-lg-4 p-3">
+        <h2 class="text-center">Gestión de Empleados</h2>
+
+
+        <div class="row g-3">
+            
+            <div class="col-md-6">
+                <label for="txtNumUnico" class="mt-2 ">Número unico del Empleado</label>
+                <input id="txtNumUnico" type="text" class="form-control" disabled>
+            </div>
+            <div style="display: none">
+            <div class="col-md-6">
+                <label for="txtIDEmpleado" class="mt-2 ">ID Empleado</label>
+                <input id="txtIDEmpleado" type="number" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="txtIDPersona" class="mt-2 ">ID Persona</label>
+                <input id="txtIDPersona" type="number" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="txtIDUsuario" class="mt-2 ">ID Usuario</label>
+                <input id="txtIDUsuario" type="number" class="form-control">
+            </div>
+            </div>
+            <div class="col-md-6">
+                <label for="txtNombre" class="mt-2">Nombre(s): <sup style="color: red">*</sup></label><br>
+                <input id="txtNombre" type="text"  class="mt-2" placeholder="ej. Adrian" pattern="^[A-Za-z]+$"
+                       title="El formato debe coincidir con letras de la A a la Z" required>
+            </div>
+            <div class="col-md-6">
+                <label for="txtApePaterno" class="mt-2">Apellido Paterno: <sup style="color: red">*</sup></label>
+                <input id="txtApePaterno" type="text"  class="mt-2" placeholder="ej. Flores" pattern="^[A-Za-z]+$"
+                       title="El formato debe coincidir con letras de la A a la Z" required>
+            </div>
+            <div class="col-md-6">
+                <label for="txtApeMaterno" class="mt-2">Apellido Materno:</label>
+                <input id="txtApeMaterno" type="text"  class="mt-2" placeholder="ej. Guerrero" pattern="^[A-Za-z]+$"
+                       title="El formato debe coincidir con letras de la A a la Z">
+            </div>
+            <div class="col-md-6">
+                <label for="dpFecha" class="mt-2">Fecha de nacimiento:</label>
+                <input id="dpFecha" type="text"  class="mt-2">
+            </div>            
+            <div class="col-md-6">
+                <label class="mt-2">Género: <sup style="color: red">*</sup></label><br><label></label>
+                <select class="form-select form-select-sm col-md-6" id="cmbGenero" name="cmbGenero">
+                    <option value="M" >Masculino</option>
+                    <option value="F">Femenino</option>
+                    <option value="O">Otro</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtCalle" class="mt-2">Calle:</label>
+                <input id="txtCalle" type="text"  class="mt-2" placeholder="ej. 5 de Mayo">
+            </div>
+            <div class="col-md-6">
+                <label for="txtNumero" class="mt-2">Número:</label>
+                <input id="txtNumero" type="number" class="mt-2" placeholder="ej. 234">
+            </div>
+            <div class="col-md-6">
+                <label for="txtColonia" class="mt-2">Colonia:</label>
+                <input id="txtColonia" type="text"  class="mt-2" placeholder="ej. Guerrero" pattern="^[A-Za-z]+$"
+                       title="El formato debe coincidir con letras de la A a la Z">
+            </div>
+            <div class="col-md-6">
+                <label for="txtCP" class="mt-2">CP:</label>
+                <input id="txtCP" type="text" class="mt-2" placeholder="ej. Guerrero">
+            </div>
+            <div class="col-md-6">
+                <label for="txtCiudad" class="mt-2">Ciudad:</label>
+                <input id="txtCiudad" type="text"  class="mt-2" placeholder="ej. Guerrero" pattern="^[A-Za-z]+$"
+                       title="El formato debe coincidir con letras de la A a la Z">
+            </div>
+            <div class="cold-md-6">
+                <label class="mt-2">Estado: <sup style="color: red">*</sup></label><br><label></label>                
+                <select class="form-select-sm col-md-5" id="cmbEstado" name="cmbEstado">
+                    <option class="col-5" value="Aguascalientes" >Aguascalientes</option>
+                    <option class="col-5" value="Baja California">Baja California</option>
+                    <option class="col-5" value="Baja California Sur">Baja California Sur</option>
+                    <option class="col-5" value="Campeche">Campeche</option>
+                    <option class="col-5" value="Chihuahua">Chihuahua</option>
+                    <option class="col-5" value="Chiapas">Chiapas</option>
+                    <option class="col-5" value="Ciudad de Mexico">Ciudad de M&eacute;xico</option>
+                    <option class="col-5" value="Coahuila">Coahuila</option>
+                    <option class="col-5" value="Colima">Colima</option>
+                    <option class="col-5" value="Durango">Durango</option>
+                    <option class="col-5" value="Guanajuato">Guanajuato</option>
+                    <option class="col-5" value="Guerrero">Guerrero</option>
+                    <option class="col-5" value="Hidalgo">Hidalgo</option>
+                    <option class="col-5" value="Jalisco">Jalisco</option>
+                    <option class="col-5" value="Michoacan">Michoac&acute;n</option>
+                    <option class="col-5" value="Morelos">Morelos</option>
+                    <option class="col-5" value="Nayarit">Nayarit</option>
+                    <option class="col-5" value="Nuevo leon">Nuevo Le&oacute;n</option>
+                    <option class="col-5" value="Oaxaca">Oaxaca</option>
+                    <option class="col-5" value="Puebla">Puebla</option>
+                    <option class="col-5" value="Queretaro">Quer&eacute;taro</option>
+                    <option class="col-5" value="Quintana Roo">Quintana Roo</option>
+                    <option class="col-5" value="San Luis Potosi">San Luis Potos&iacute;</option>
+                    <option class="col-5" value="Sinaloa">Sinaloa</option>
+                    <option class="col-5" value="Sonora">Sonora</option>
+                    <option class="col-5" value="Tabasco">Tabasco</option>
+                    <option class="col-5" value="Tamaulipas">Tamaulipas</option>
+                    <option class="col-5" value="Tlaxcala">Tlaxcala</option>
+                    <option class="col-5" value="Veracruz">Veracruz</option>
+                    <option class="col-5" value="Yucatan">Yucat&acute;n</option>
+                    <option class="col-5" value="Zacatecas">Zacatecas</option>
+                </select>
+            </div>
+            <div>
+
+            </div>
+            <!--            <div class="col-md-6">
+                            <label for="txtRfc" class="mt-2 col-12">RFC: <sup style="color: red">*</sup></label><br>
+                            <input type="text" id="txtRfc" class="mt-2" style="text-transform: uppercase;" placeholder="ej. MAMC00733V5DJ" 
+                            required pattern="[A-Z0-9]+" minlength="13" maxlength="13" 
+                            title="El formato debe coincidir con letras de la A a la Z y numeros de el 0 al 9 (13 caracteres)">
+                        </div>-->
+            <div class="col-md-6">
+                <label for="txtTelefono" class="mt-2">Teléfono Fijo:</label><br>
+                <input id="txtTelefono" type="number" class="mt-2" placeholder="ej. 477 876 4567"
+                       title="Solo puedes ingresar números">
+            </div>
+            <div class="col-md-6">
+                <label for="txtMovil" class="mt-2">Telefono Movil: <sup style="color: red">*</sup></label><br>
+                <input id="txtMovil" type="number"  class="mt-2" placeholder="ej. 477 098 4569"
+                       title="El movil solo puede contener numeros">
+            </div>
+            <div class="cold-md-6">
+                <label for="txtCorreo" class="mt-2">Correo <sup style="color: red">*</sup> </label><br>
+                <input id="txtCorreo" type="text"  class="mt-2 col-md-6" placeholder="ej. angu@gmail.com" 
+                       title="El correo puede contener lestras de la A a la Z y numeros">
+            </div>
+            <div class="col-md-6">
+                <label for="txtUsuario" class="mt-2">Usuario: <sup style="color: red">*</sup></label> <br>
+                <input id="txtUsuario" type="text"  class="mt-2" placeholder="ej. AdrianFG">
+            </div>
+            <div class="col-md-6">
+                <label for="txtContraseña" class="mt-2">Contraseña: <sup style="color: red">*</sup></label> <br>
+                <input id="txtContraseña" type="password"  class="mt-2" placeholder="ej. Contraseña123">
+            </div>
+            <div class="cold-md-6">
+                <label class="mt-2">Rol: <sup style="color: red">*</sup></label><br><label></label>                
+                <select class="form-select-sm col-md-5" id="cmbRol" name="txtRol">
+                    <option class="col-5" value="Aguascalientes" >administrador</option>
+                    <option class="col-5" value="Baja California">empleado</option>                  
+                </select>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-around mt-2">
+            <button class="mt-2 btn btn-lg" onclick="moduloEmpleado.save();" id="btnAdd" style="background: #011866"><img src="resources/g.png" style="height: 25px; width: 25px;">
+
+
+            </button>
+
+            
+            <button class="mt-2 btn btn-lg" onclick="moduloEmpleado.delet();" id="btnDelete" style="background: #011866"><img src="resources/d.png" style="height: 25px; width: 25px;">
+
+
+            </button>
+        </div>
+
+    </div>
+
+    <div class="card col-lg-7 mx-2 m-0 p-3" style="margin-bottom: 10px">
+        <div class="d-flex m-2">
+            <label for="txtBusquedaEmpleado" class="form-label mx-3">Buscar Empleado: </label>
+            <input type="text" id="txtBusquedaEmpleado">
+            <button class="btn mx-2" onclick="moduloEmpleado.searchEmpleado();" style="background: #011866"><img src="resources/b.png" style="height: 25px; width: 25px;"></button>
+
+            <select name="estado" id="estado" onclick="moduloEmpleado.loadTable1()">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+            </select>
+
+            <div style="padding-left: 100px;">
+                <button class="btn mx-2" onclick="moduloEmpleado.imprimir('tabla')" style="background: #011866"><img src="resources/i.png" style="height: 25px; width: 30px;"></button>
+            </div>
+        </div>
+
+        <div id="tabla">
+            <table class="table table-hover" id="tblEmp">
+                <thead class="table-dark" id="tb2">
+                    <tr>
+                        <th>N° Empleado</th>
+                        <th>Nombre(s)</th>
+                        <th>Apellido(s)</th>
+                        <th>Tel.Movil</th>
+                        <th>Usuario</th>
+                    </tr>
+                </thead>
+                <tbody id="tblEmpleados">
+
+                </tbody>
+            </table> 
+        </div>
+    </div>
+</div>
+

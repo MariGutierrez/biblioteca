@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .input input{
+                width: 100%
+            }
+            .formu{
+                width: 100%;
+                display: flex;
+                justify-content: space-between
+            }
+            .form-33{
+                width: calc(33.33% - 20px) !important
+            
+            .form-33 select{
+                width: 100%
+            }
+            .form-50{
+                width:calc(50% - 20px)
+            }
+            .checkbox{
+                display: flex;
+                justify-content: space-between
+            }
+        </style>
+    </head>
+    <body>
+        <div style="max-width: 1400px; margin: 0 auto; background: white; padding: 20px 0">
+            <h2 class="text-center">Detalle Venta Presupuesto Lentes</h2>
+            <div class="input" style="max-width: 1200px; margin: 0 auto; padding-bottom: 30px">
+                <label for="txtBuscarCliente">Busca tu cliente</label>
+                <input type="text" name="Buscador" id="txtBuscarCliente">
+            </div>
+            <table id="idTblCliente" class="table table-hover">
+                <thead class="table-dark" id="tb2">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Teléfono Movil</th>
+                    </tr>
+                </thead>
+                
+                <tbody id="tblClientes">
+
+                </tbody>
+            </table>
+             <h3 class="text-center">Nombre del cliente seleccionado</h3>
+             <div style="max-width: 1200px; margin: 0 auto">
+                  <div class="formu" style="display: flex">
+                    <div class="form-50" style="width: calc(50% - 20px);">
+                        <label>Altura Oblea</label><br>
+                        <input type="text" style="width: 100%">
+                    </div>
+                    <div class="form-50" style="width: calc(50% - 20px);">
+                        <label>Examen vista del cliente</label><br>
+                        <select id="examen"  style="width: 100%">
+                        </select>
+                    </div>  
+                </div>
+                 <div class="formu">
+                    <div class="form-33" style="width: calc(33.33% - 20px);">
+                        <label>Tipo Mica</label><br>
+                        <select id="tipoMica"  style="width: 100%">
+                        </select>
+                    </div>
+                    <div class="form-33" style="width: calc(33.33% - 20px);">
+                        <label>Material</label><br>
+                        <select id="material"  style="width: 100%">
+                        </select>
+                    </div>
+                    <div class="form-33" style="width: calc(33.33% - 20px);">
+                        <label>Armazón</label><br>
+                        <select  id="armazon" style="width: 100%">
+                        </select>
+                    </div>
+                </div>
+                 <br>
+                 <h4>Tratamientos</h4>
+                 <div id="tratamientos" class="input checkbox" style="display: flex; max-width: 600px; margin: 0 auto">
+                    <label>Láser Exímer</label>
+                    <input id="laser" type="checkbox">
+                    <label>Gafas</label>
+                    <input id="gafas" type="checkbox">
+                    <label>Lentes Intraoculares</label>
+                    <input id="lentes" type="checkbox">
+                  
+                 </div>
+             </div>
+             <div id="tablaDetalleVentaPL" class="card col-lg-12" style="margin-top: 50px">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Descuento</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblDetVenPL">
+
+                    </tbody>
+                </table>
+             </div>
+         </div>
+    </body>
+</html>

@@ -1,0 +1,85 @@
+
+
+ 
+<div class="container-fluid row d-flex justify-content-md-center" style="margin-top: 10px">
+    <div class="card col-lg-5 m-2 p-4">
+        <h2 class="text-center">Gestion Soluciones de sisis </h2>
+
+        <form class="row g-3 formulario" id="formulario">
+        <div class="row g-3">
+            <div class="col-md-6" id="grupo_Nom">
+                <label for="txtNombre" class="mt-2 col-12">Nombre: <sup style="color: red">*</sup></label>
+                <input  name="nombre" id="txtNombre" type="text"  class="mt-2" placeholder="ej. Solucion salina" pattern="[A-Za-z]+$" 
+                        title="El nombre solo puede contener lestras de la A a la ">
+            </div>
+            <div class="col-md-6">
+                <label for="txtMarca" class="mt-2 col-12">Marca: <sup style="color: red">*</sup></label>
+                <input id="txtMarca" type="text"  class="mt-2" placeholder="ej. ViewGood" pattern="[A-Za-z]+$" title="La marca
+                       solo puede contener lestras de la A a la Z">
+            </div>
+            <div class="col-md-6">
+                <label for="txtDes" class="mt-2">Descripcion: <sup style="color: red">*</sup> </label> <br>
+                <input id="txtDes" type="text"  class="mt-2" placeholder="ej. Botella de 50ml" pattern="[A-Za-z-0-9]+$" title="La descripcion
+                       puede contener lestras de la A a la Z y numeros">
+            </div>
+            <div class="col-md-6">
+                <label for="txtPreCom" class="mt-2 col-12">Precio Compra: <sup style="color: red">*</sup></label><br>
+                <input id="txtPreCom" type="number"  class="mt-2" placeholder="ej. $30"  
+                title="El precio compra solo puede contener numeros">
+            </div>
+            <div class="col-md-6">
+                <label for="txtPreVen" class="mt-2">Precio Venta: <sup style="color: red">*</sup></label><br>
+                <input id="txtPreVen" type="number"  class="mt-2" placeholder="ej. $40.35"  
+                title="El precio venta solo puede contener numeros">
+            </div>
+            <div class="col-md-6">
+                <label for="txtExis" class="mt-2">Existencias: <sup style="color: red">*</sup></label><br>
+                <input id="txtExis" type="number"  class="mt-2" placeholder="ej. 70"  
+                title="La existencia solo puede contener numeros">
+            </div>
+        </div>
+</form>
+        <div class="d-flex justify-content-around mt-2">
+            <button class="mt-2 btn btn-lg" onclick="moduloSoluciones.addSoluciones();" id="btnAdd" style="background: #011866"><img src="resources/g.png" style="height: 25px; width: 25px;"></button>
+
+            <button class="mt-2 btn btn-lg disabled" onclick="moduloSoluciones.updateSoluciones();" id="btnUpdate" style="background: #011866"><img src="resources/a.png" style="height: 25px; width: 25px;"></button>
+
+            <button class="mt-2 btn btn-lg disabled" onclick="moduloSoluciones.deleteSoluciones();" id="btnDelete" style="background: #011866"><img src="resources/d.png" style="height: 25px; width: 25px;"></button>
+           
+        </div>
+    </div>
+    
+
+    <div class="card col-lg-6  p-4 m-2" style="margin-bottom: 10px">
+        <div class="d-flex m-3">
+              <label for="txtBusquedaSoluciones" class="form-label mx-3">Buscar  </label>
+            <input type="text" id="txtBusquedaSoluciones">
+            <button class="btn mx-2" onclick="moduloSoluciones.searchSoluciones();" style="background: #011866"><img src="resources/b.png" style="height: 25px; width: 25px;"></button>
+            <select name="estado" id="estado" onclick="moduloSoluciones.loadTabla1();">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+            </select>
+            <button class="btn mx-2" onclick="moduloSoluciones.imprimir('tabla')" style="background: #011866;"><img src="resources/i.png" style="height: 25px; width: 30px;"></button>
+        </div>
+        <div id="tabla">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Marca</th>
+                    <th>Descripcion</th>
+                    <th>Precio Compra</th>
+                    <th>Precio Venta</th>
+                    <th>Existencias</th>
+                    <th>Estátus</th>
+                </tr>
+            </thead>
+            <tbody id="tblSoluciones">
+
+            </tbody>
+        </table>
+            </div>
+    </div>
+</div> <br><br><br><br><br><br><br><br>
+ 
+  
