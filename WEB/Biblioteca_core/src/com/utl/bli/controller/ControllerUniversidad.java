@@ -59,29 +59,14 @@ public class ControllerUniversidad {
     }
 
     public void update(Universidad c) throws Exception {
-        String sql = "UPDATE universidad nombre_universidad=?, pais=?, estatus=? WHEN id_universidad = ?";
+        String sql = "UPDATE universidad nombre_universidad='"+c.getNombre_universidad()+"', pais='"+c.getPais()+"', estatus="+c.getEstatus()+" WHERE id_universidad ="+c.getId_universidad();
 
-        //Con este objeto nos vamos a conectar a la Base de Datos:
         ConexionMySQL connMySQL = new ConexionMySQL();
 
-        // creeamos una instancia de tipo ConexxionMySQL para hacer la conexion 
-        //Abrimos la conexión con la Base de Datos:
         Connection conn = connMySQL.open();
-        //con lo anterior se abre la coneccion 
 
-        //Con este objeto invocaremos al StoredProcedure:
-        CallableStatement cstmt = conn.prepareCall(sql);
-
-        //se definen los valores de los parametros de los datos
-        //personales en el orden en el que se piden en el
-        //procedimiento almacenado comenzando en 1
-        cstmt.setString(1, c.getNombre_universidad());
-        cstmt.setString(2, c.getPais());
-        cstmt.setString(3, c.getEstatus() + "");
-        cstmt.setInt(4, c.getId_universidad());
-
-        cstmt.executeUpdate();
-
+        Statement cstmt = conn.createStatement();
+        cstmt.executeUpdate(sql);
         cstmt.close();
         connMySQL.close();
     }

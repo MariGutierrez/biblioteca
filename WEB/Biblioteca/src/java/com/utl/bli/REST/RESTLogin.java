@@ -30,7 +30,6 @@ public class RESTLogin {
                 out = new Gson().toJson(usu);
             } else {
                 out = "{\"error\" : \"Operación denegada, inicia sesión.\"}";
-
             }
         } catch (Exception ex) {
             ex.printStackTrace();
