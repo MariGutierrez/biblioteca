@@ -1,4 +1,3 @@
-
 package com.utl.bli.REST;
 
 import com.google.gson.Gson;
@@ -16,9 +15,9 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
 
-
 @Path("Uni")
 public class RESTUniversidad {
+
     @GET
     @Path("getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -37,33 +36,29 @@ public class RESTUniversidad {
             out = "{\"exception\":\"Error interno del servidor.\"}";
         }
         return Response.status(Response.Status.OK).entity(out).build();
-    } 
+    }
 
-    
-    
     @POST
     @Path("buscar")
-    @Produces(MediaType.APPLICATION_JSON) 
+    @Produces(MediaType.APPLICATION_JSON)
     public Response buscar(@FormParam("filtro") @DefaultValue("") String filtro) {
-        
+
         String out = null;
         ControllerUniversidad cc = null;
         List<Universidad> universidades = null;
 
-            try {
-                cc = new ControllerUniversidad();
-                universidades = cc.buscar(filtro);
-                out = new Gson().toJson(universidades);
-            } catch (Exception e) {
-                e.printStackTrace();
-                out = "{\"exception\":\"Error interno del servidor.\"}";
-            }
-        
+        try {
+            cc = new ControllerUniversidad();
+            universidades = cc.buscar(filtro);
+            out = new Gson().toJson(universidades);
+        } catch (Exception e) {
+            e.printStackTrace();
+            out = "{\"exception\":\"Error interno del servidor.\"}";
+        }
+
         return Response.status(Response.Status.OK).entity(out).build();
     }
-    
-    
-    
+
     @Path("save")
     @POST  // por que solo se ingresan los datos 
     @Produces(MediaType.APPLICATION_JSON)
@@ -75,15 +70,16 @@ public class RESTUniversidad {
         ControllerUniversidad cc = new ControllerUniversidad();
 
         try {
-                uni = gson.fromJson(datosUni, Universidad.class);
-                if (uni.getId_universidad()== 0) {
-                    
-                    cc.insert(uni);
-                    
-                } else {
-                    cc.update(uni);
-                }
-                out = gson.toJson(uni);
+            String id = uni.getId_universidad() + "";
+            uni = gson.fromJson(datosUni, Universidad.class);
+            if (id.equals("0")) {
+
+                cc.insert(uni);
+
+            } else {
+                cc.update(uni);
+            }
+            out = gson.toJson(uni);
         } catch (Exception e) {
             e.printStackTrace();
             out = """
@@ -104,15 +100,13 @@ public class RESTUniversidad {
         ControllerUniversidad cliente = new ControllerUniversidad();
 
         try {
-                
-                uni = gson.fromJson(datosUni, Universidad.class);
+
+            uni = gson.fromJson(datosUni, Universidad.class);
 
             cliente.delete(uni.getId_universidad());
 
             out = gson.toJson(uni);
-                
-            
-            
+
         } catch (JsonParseException jpe) {
 
             jpe.printStackTrace();
