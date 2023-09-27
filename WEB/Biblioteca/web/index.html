@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>TODO supply a title</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link href="styles/css/estilo.css" rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    <style>
-        #abrirLogin {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
+        <style>
+            #abrirLogin {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
 
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <button id="abrirLogin">Icono de personita :3</button>        
+        </style>
+    </head>
+    <body style="background-image: url('resources/libo.jpg'); background-size: 100%; background-repeat: no-repeat;">
+        <div class="container">
+            <button id="abrirLogin"><img src="resources/iniciar-sesion.png" alt=""/>Iniciar sesión</button>   
             <div class="d-flex justify-content-center align-items-center vh-100">
                 <div class="row justify-content-center">
                     <div class="col-md-12" style="width: 1100px">
@@ -33,51 +33,51 @@
                     </div>
                 </div>
             </div>
-    </div>
-    
-    <section class="modal" id="login">
-        <div class="modal-dialog">
-            <div class="modal-content" style="border-radius: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Biblioteca blabla</h5>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <input type="text" class="form-control" id="usuario" placeholder="Usuario:" name="usuario">
-                            <br><br>
-                            <input type="password" class="form-control" id="contrasena" placeholder="Contraseña:" name="contrasena">
-                        </div>
-                        <div class="modal-footer">
-                            
-                            <button type="button" class="btn" style="background-color: rgb(160, 122, 90); width: 490px; 
-                                    color: white; font-weight: bold;" onclick="ingresar()">Iniciar sesión</button>
-                            
+        </div>
+
+        <section class="modal" id="login">
+            <div class="modal-dialog">
+                <div class="modal-content" style="border-radius: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Biblioteca blabla</h5>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="text" class="form-control" id="usuario" placeholder="Usuario:" name="usuario">
+                                <br><br>
+                                <input type="password" class="form-control" id="contrasena" placeholder="Contraseña:" name="contrasena">
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn" style="background-color: rgb(160, 122, 90); width: 490px;
+                                        color: white; font-weight: bold;" onclick="ingresar()">Iniciar sesión</button>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>            
-        </div>
-    </section>
-</body>
-        
-<script src="js/main.js"></script>         
-<script>
-        const abrirLogin = document.getElementById("abrirLogin");
-        const login = document.getElementById("login");
+                </div>            
+            </div>
+        </section>
+    </body>
 
-        abrirLogin.addEventListener("click", () => {
-            login.style.display = "block";
-            login.classList.add("show");
-            document.body.classList.add("modal-open");
-        });
+    <script src="js/main.js"></script>         
+    <script>
+                                            const abrirLogin = document.getElementById("abrirLogin");
+                                            const login = document.getElementById("login");
 
-        login.querySelector(".close").addEventListener("click", () => {
-            login.style.display = "none";
-            login.classList.remove("show");
-            document.body.classList.remove("modal-open");
-        });
-</script>
+                                            abrirLogin.addEventListener("click", () => {
+                                                login.style.display = "block";
+                                                login.classList.add("show");
+                                                document.body.classList.add("modal-open");
+                                            });
+
+                                            login.querySelector(".close").addEventListener("click", () => {
+                                                login.style.display = "none";
+                                                login.classList.remove("show");
+                                                document.body.classList.remove("modal-open");
+                                            });
+    </script>
 
 </html>
