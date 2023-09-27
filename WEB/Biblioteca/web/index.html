@@ -1,15 +1,70 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <style>
+        button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button id="abrirLogin">Icono de personita :3</button>        
+            <div class="d-flex justify-content-center align-items-center vh-100">
+                <div class="row justify-content-center">
+                    <div class="col-md-12" style="width: 1100px">
+                        <div class="input-group">
+                            <input class="form-control" type="search" aria-label="Buscar">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</body>
+        
+            
+<script>
+        const abrirLogin = document.getElementById("abrirLogin");
+
+        abrirLogin.addEventListener("click", () => {
+            Swal.fire({
+                title: 'Iniciar Sesión',
+                html: `
+                    <form id="loginForm">
+                        <label for="usuario">Usuario:</label>
+                        <input type="text" id="usuario" name="usuario" required><br><br>
+
+                        <label for="contrasena">Contraseña:</label>
+                        <input type="password" id="contrasena" name="contrasena" required><br><br>
+                    </form>
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Iniciar Sesión',
+                cancelButtonText: 'Cerrar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const usuarioInput = document.getElementById("usuario").value;
+                    const contrasenaInput = document.getElementById("contrasena").value;
+
+                    
+                    Swal.fire('Inicio de Sesión Exitoso', '', 'success');
+                }
+            });
+        });
+</script>
+
 </html>
