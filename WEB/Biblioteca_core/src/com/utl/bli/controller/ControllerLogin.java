@@ -43,8 +43,6 @@ public class ControllerLogin {
         u.setNombre_usuario(rs.getString("nombre_usuario"));
         u.setContrasenia(rs.getString("contrasenia"));
         u.setRol(rs.getString("rol"));
-        u.setLast_token(rs.getString("last_token"));
-        u.setDate_last_token(rs.getString("date_last_token"));
         u.setEstatus(rs.getBoolean("estatus"));
         
         return u;

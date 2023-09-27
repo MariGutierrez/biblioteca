@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <style>
-        button {
+        #abrirLogin {
             position: absolute;
             top: 10px;
             right: 10px;
@@ -34,36 +34,49 @@
                 </div>
             </div>
     </div>
+    
+    <section class="modal" id="login">
+        <div class="modal-dialog">
+            <div class="modal-content" style="border-radius: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Biblioteca blabla</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" class="form-control" id="usuario" placeholder="Usuario:" name="usuario">
+                            <br><br>
+                            <input type="password" class="form-control" id="contrasena" placeholder="Contraseña:" name="contrasena">
+                        </div>
+                        <div class="modal-footer">
+                            
+                            <button type="button" class="btn" style="background-color: rgb(160, 122, 90); width: 490px; 
+                                    color: white; font-weight: bold;" onclick="ingresar()">Iniciar sesión</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
 </body>
         
-            
+<script src="js/main.js"></script>         
 <script>
         const abrirLogin = document.getElementById("abrirLogin");
+        const login = document.getElementById("login");
 
         abrirLogin.addEventListener("click", () => {
-            Swal.fire({
-                title: 'Iniciar Sesión',
-                html: `
-                    <form id="loginForm">
-                        <label for="usuario">Usuario:</label>
-                        <input type="text" id="usuario" name="usuario" required><br><br>
+            login.style.display = "block";
+            login.classList.add("show");
+            document.body.classList.add("modal-open");
+        });
 
-                        <label for="contrasena">Contraseña:</label>
-                        <input type="password" id="contrasena" name="contrasena" required><br><br>
-                    </form>
-                `,
-                showCancelButton: true,
-                confirmButtonText: 'Iniciar Sesión',
-                cancelButtonText: 'Cerrar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    const usuarioInput = document.getElementById("usuario").value;
-                    const contrasenaInput = document.getElementById("contrasena").value;
-
-                    
-                    Swal.fire('Inicio de Sesión Exitoso', '', 'success');
-                }
-            });
+        login.querySelector(".close").addEventListener("click", () => {
+            login.style.display = "none";
+            login.classList.remove("show");
+            document.body.classList.remove("modal-open");
         });
 </script>
 

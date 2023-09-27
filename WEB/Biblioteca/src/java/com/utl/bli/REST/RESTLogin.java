@@ -13,8 +13,7 @@ import jakarta.ws.rs.core.Response;
 
 /* @author maria*/
 @Path("log")
-public class RESTLogin {
-    
+public class RESTLogin {    
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("in")
@@ -24,14 +23,14 @@ public class RESTLogin {
         String out = null;
         ControllerLogin cl = new ControllerLogin();
         Usuario usu = null;
+
         try {
             usu = cl.login(usuario, contrasenia);
             if (usu != null) {
                 out = new Gson().toJson(usu);
             } else {
-                out = """
-                  {"error" : Operación denegada, inicia sesión.""}
-                  """;
+                out = "{\"error\" : \"Operación denegada, inicia sesión.\"}";
+
             }
         } catch (Exception ex) {
             ex.printStackTrace();
