@@ -27,7 +27,7 @@ public class ControllerUniversidad {
         //es muy importante que se cuente con las llaves pq 
         //si no no funciona, se define la consulta y cada 
         //signo de interrogacion es un valor
-        String sql = "INSERT INTO universidad(?,?,?,?)";  // Valores de Retorno   ? 17 ?
+        String sql = "INSERT INTO universidad values(?,?,?,?)";  // Valores de Retorno   ? 17 ?
 
         // Aqui se define el bloque de variables para guardar los id
         //se crean variables para guardar los id que se van a generar(no son forzosas)
@@ -103,7 +103,36 @@ public class ControllerUniversidad {
 
     public List<Universidad> getAll(String filtro) throws Exception {
         //aqui se ejecuta la consulta sql
-        String sql = "SELECT * FROM universidad";
+        String sql = "SELECT * FROM universidad WHERE estatus="+filtro;
+
+        //Con este objeto se conecta a la Base de Datos
+        ConexionMySQL connMySQL = new ConexionMySQL();
+
+        //aqui se abre la conexión con la Base de Datos:
+        Connection conn = connMySQL.open();
+
+        //con esto ejecutaremos la consulta:
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+
+        //Aquí se guardan los resultados de la consulta:
+        ResultSet rs = pstmt.executeQuery();
+
+        List<Universidad> universidades = new ArrayList<>();
+
+        while (rs.next()) {
+            universidades.add(fill(rs));
+        }
+
+        rs.close();
+        pstmt.close();
+        connMySQL.close();
+
+        return universidades;
+    }
+    
+    public List<Universidad> buscar(String filtro) throws Exception {
+        //aqui se ejecuta la consulta sql
+        String sql = "SELECT * FROM universidad WHERE nombre="+filtro;
 
         //Con este objeto se conecta a la Base de Datos
         ConexionMySQL connMySQL = new ConexionMySQL();

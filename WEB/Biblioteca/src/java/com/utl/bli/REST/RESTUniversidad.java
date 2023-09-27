@@ -17,7 +17,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 
-@Path("Universidad")
+@Path("Uni")
 public class RESTUniversidad {
     @GET
     @Path("getAll")
@@ -52,7 +52,7 @@ public class RESTUniversidad {
 
             try {
                 cc = new ControllerUniversidad();
-                universidades = cc.getAll(filtro);
+                universidades = cc.buscar(filtro);
                 out = new Gson().toJson(universidades);
             } catch (Exception e) {
                 e.printStackTrace();
