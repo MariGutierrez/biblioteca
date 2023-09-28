@@ -1,5 +1,3 @@
-
-
 function ingresar() {
 
     let usuario = document.getElementById("usuario").value;
@@ -21,8 +19,8 @@ function ingresar() {
                    window.location.href = 'inicio.html';
                 });
 }
-let moduloUniversidad;
 
+let moduloUniversidad;
 function cargarModuloUniversidad(){
     fetch("modulo_universidad/view_universidad.html")
         .then(
@@ -33,7 +31,7 @@ function cargarModuloUniversidad(){
         .then(
             function(html){
                 document.getElementById("contPrincipal").innerHTML = html;
-                import ("modulo_universidad/controller_universidad.js").then(
+                import ("../modulo_universidad/controller_universidad.js").then(
                     function(controller){
                         moduloUniversidad = controller;
                         moduloUniversidad.inicializar();
@@ -41,6 +39,4 @@ function cargarModuloUniversidad(){
                 );
             }
         );
-}
-
-
+};
