@@ -117,7 +117,7 @@ public class ControllerUniversidad {
     
     public List<Universidad> buscar(String filtro) throws Exception {
         //aqui se ejecuta la consulta sql
-        String sql = "SELECT * FROM universidad WHERE nombre="+filtro;
+        String sql = "SELECT * FROM universidad WHERE nombre_universidad LIKE '%"+filtro+"%'";
 
         //Con este objeto se conecta a la Base de Datos
         ConexionMySQL connMySQL = new ConexionMySQL();
