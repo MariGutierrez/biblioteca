@@ -1,3 +1,64 @@
-.contenedor {
-  background-image: url('resources/libo.jpg'); background-size: cover; background-repeat: no-repeat; 
+/* Estilo personalizado para el contenido */
+.content {
+    padding: 20px;
+}
+
+/* Estilo personalizado para el menú lateral */
+.sidebar {
+    height: 100vh; /* Establece la altura al 100% de la ventana */
+    position: fixed; /* Fija el menú lateral en su lugar */
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+/* Estilo personalizado para el logo */
+.logo {
+    text-align: center;
+    padding: 20px;
+}
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Modificar el color y tamaño de las letras en el menú lateral */
+.sidebar a {
+    color: #fff; /* Cambiar el color del texto a blanco */
+    font-size: 18px; /* Cambiar el tamaño de la fuente */
+    text-decoration: none; /* Eliminar el subrayado de los enlaces */
+    transition: background-color 0.3s; /* Agregar una transición para el cambio de color de fondo */
+}
+
+/* Efecto hover para los enlaces del menú */
+.sidebar a:hover {
+    background-color: #222; /* Cambiar el color de fondo en hover a gris oscuro */
+}
+
+/* Estilo para el botón de cerrar sesión */
+.logout-button {
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 180px;
+    cursor: pointer;
+}
+
+/* Estilo para el botón de cerrar sesión en hover */
+.logout-button:hover {
+    background-color: #c9302c;
 }
