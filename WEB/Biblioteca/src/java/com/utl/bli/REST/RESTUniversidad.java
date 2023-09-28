@@ -70,9 +70,10 @@ public class RESTUniversidad {
         ControllerUniversidad cc = new ControllerUniversidad();
 
         try {
-            String id = uni.getId_universidad() + "";
             uni = gson.fromJson(datosUni, Universidad.class);
-            if (id.equals("0")) {
+            int id = uni.getId_universidad();
+            System.out.println(id);
+            if (id<=0) {
 
                 cc.insert(uni);
 
