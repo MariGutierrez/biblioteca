@@ -59,7 +59,7 @@ public class ControllerUniversidad {
     }
 
     public void update(Universidad c) throws Exception {
-        String sql = "UPDATE universidad nombre_universidad='"+c.getNombre_universidad()+"', pais='"+c.getPais()+"', estatus="+c.getEstatus()+" WHERE id_universidad ="+c.getId_universidad();
+        String sql = "UPDATE universidad SET nombre_universidad='"+c.getNombre_universidad()+"', pais='"+c.getPais()+"', estatus="+c.getEstatus()+" WHERE id_universidad ="+c.getId_universidad();
 
         ConexionMySQL connMySQL = new ConexionMySQL();
 
