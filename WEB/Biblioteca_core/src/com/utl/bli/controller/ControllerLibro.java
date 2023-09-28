@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +22,11 @@ import java.util.List;
 public class ControllerLibro {
     
     public void insert(Libro l) throws Exception {
-        String sql = "INSERT INTO libro (id_universidad, titulo, autor, editorial, idioma, genero, no_paginas, libro, estatus) VALUES (?,?,?,?,?,?,?,?,1);" ;
-       
+        String sql = "INSERT INTO libro VALUES (0,?,?,?,?,?,?,?,?,1);" ;
+
         ConexionMySQL connMySQL = new ConexionMySQL();
         Connection conn = connMySQL.open();
-        PreparedStatement ps = conn.prepareStatement(sql);
+        PreparedStatement ps = conn.prepareStatement(sql);        
         
         ps.setInt(1, l.getUniversidad().getId_universidad());
         ps.setString(2,l.getTitulo());        
@@ -38,6 +39,19 @@ public class ControllerLibro {
         ps.executeUpdate();
         // Cerrar la conexion 
         ps.close();
+        connMySQL.close();
+    }
+    
+     public void update(Libro l) throws Exception {
+        String sql = "UPDATE libro SET libro = ? WHERE id_universidad = ?";
+        
+        ConexionMySQL connMySQL = new ConexionMySQL();
+
+        Connection conn = connMySQL.open();
+
+        Statement cstmt = conn.createStatement();
+        cstmt.executeUpdate(sql);
+        cstmt.close();
         connMySQL.close();
     }
     
@@ -75,9 +89,9 @@ public class ControllerLibro {
     }
 
     
-    public List<Libro> getAll() throws Exception {
+    public List<Libro> getAll(String filtro) throws Exception {
         //La consulta SQL a ejecutar:
-        String sql = "SELECT * FROM v_armazones";
+        String sql = "SELECT * FROM libro WHERE titulo='" + filtro+"'";
         ConexionMySQL connMySQL = new ConexionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -94,10 +108,10 @@ public class ControllerLibro {
 
         return libros;
     }
-
+    
+    
     private Libro fill(ResultSet rs) throws Exception {
         Libro l = new Libro();
-        Universidad u = new Universidad();
         
         l.setId_libro(rs.getInt("id_libro"));
         l.setAutor(rs.getString("autor"));
@@ -108,13 +122,9 @@ public class ControllerLibro {
         l.setLibro(rs.getString("libro"));
         l.setEstatus(rs.getBoolean("estatus"));
         
-        u.setId_universidad(rs.getInt("id_universidad"));
-        u.setNombre_universidad(rs.getString("nombre_universidad"));
-        u.setEstatus(rs.getInt("Estatus"));
-        u.setPais(rs.getString("pais"));
-
-        l.setUniversidad(u);
-
+        l.setUniversidad(new Universidad());
+        l.getUniversidad().setId_universidad(rs.getInt("id_universidad"));
+        
         return l;
     }
     
