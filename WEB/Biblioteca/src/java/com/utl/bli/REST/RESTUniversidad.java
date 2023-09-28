@@ -38,10 +38,10 @@ public class RESTUniversidad {
         return Response.status(Response.Status.OK).entity(out).build();
     }
 
-    @POST
+    @GET
     @Path("buscar")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response buscar(@FormParam("filtro") @DefaultValue("") String filtro) {
+    public Response buscar(@QueryParam("filtro") @DefaultValue("") String filtro) {
 
         String out = null;
         ControllerUniversidad cc = null;
@@ -55,7 +55,6 @@ public class RESTUniversidad {
             e.printStackTrace();
             out = "{\"exception\":\"Error interno del servidor.\"}";
         }
-
         return Response.status(Response.Status.OK).entity(out).build();
     }
 
