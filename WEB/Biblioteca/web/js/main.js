@@ -1,3 +1,21 @@
+tipoUSer();
+function tipoUSer()
+{
+    let rol = localStorage.getItem("user").toString();
+    if(rol === "Administrador")
+    {
+        
+    }
+    else
+    {
+        document.getElementById("menOp2").classList.add("d-none");
+        document.getElementById("menOp3").classList.add("d-none");
+        document.getElementById("menOp4").classList.add("d-none");
+    }
+    console.log(rol);
+}
+
+
 function ingresar() {
 
     let usuario = document.getElementById("usuario").value;
