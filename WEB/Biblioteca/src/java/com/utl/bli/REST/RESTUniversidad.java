@@ -72,7 +72,7 @@ public class RESTUniversidad {
             uni = gson.fromJson(datosUni, Universidad.class);
             int id = uni.getId_universidad();
             System.out.println(id);
-            if (id<=0) {
+            if (id <= 0) {
 
                 cc.insert(uni);
 
@@ -101,9 +101,9 @@ public class RESTUniversidad {
 
         try {
 
-            uni = gson.fromJson(datosUni, Universidad.class);
+            //uni = gson.fromJson(datosUni, Universidad.class);
 
-            cliente.delete(uni.getId_universidad());
+            cliente.delete(Integer.parseInt(datosUni));
 
             out = gson.toJson(uni);
 
@@ -124,4 +124,5 @@ public class RESTUniversidad {
         return Response.status(Response.Status.OK).entity(out).build();
 
     }
+
 }
