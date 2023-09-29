@@ -31,14 +31,13 @@ export function refrescarTabla() {
 export function buscar() {
     let filtro = document.getElementById("txtBusquedaUni").value;
     let url;
-    if(filtro==="")
+    if (filtro === "")
     {
-    url = "api/Uni/buscar?filtro=" + filtro;
-    }
-    else
+        url = "api/Uni/buscar?filtro=" + filtro;
+    } else
     {
-     filtro = document.getElementById("cmbFiltro").value;   
-     url = "api/Uni/getAll?filtro=" + filtro;   
+        filtro = document.getElementById("cmbFiltro").value;
+        url = "api/Uni/getAll?filtro=" + filtro;
     }
     fetch(url)
             .then(response => {
@@ -149,14 +148,11 @@ export function mostrarDetalle(id) {
         }
     });
 
-    document.getElementById("btnDelete").classList.remove("disabled");
-    document.getElementById("divTbl").classList.add("d-none");
 }
 
 export function clean() {
     document.getElementById("txtNombreUni").value = "";
     document.getElementById("txtIdUni").value = "";
-    document.getElementById("btnDelete").classList.add("disabled");
 }
 
 
@@ -164,7 +160,7 @@ export function clean() {
 export function deleteUni() {
     let id2 = document.getElementById("txtIdUni").value;
     let datos = {
-        id: id2
+        datosUni: id2
     };
     let params = new URLSearchParams(datos);
     fetch("api/Uni/delete",
@@ -195,28 +191,13 @@ export function deleteUni() {
 
                 Swal.fire('', "Universidad eliminada correctamente", 'success');
                 refrescarTabla();
-                document.getElementById("divTbl").classList.remove("d-none");
                 clean();
             });
 }
 
 
 
-function ocultarTabla() {
 
-    if (document.getElementById("divTbl").classList.contains("d-none")) {
-        ocultar();
-    } else {
-        mostrar();
-    }
-}
-
-function mostrar() {
-    document.getElementById("divTbl").classList.add("d-none");
-}
-function ocultar() {
-    document.getElementById("divTbl").classList.remove("d-none");
-}
 
 export function askDelete() {
     Swal.fire({
@@ -230,12 +211,7 @@ export function askDelete() {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire(
-                    deleteUni(),
-                    'Universidad eliminada',
-                    'Se ha marcado como inactiva',
-                    'success'
-                    );
+            deleteUni();
         }
     });
 }
