@@ -1,9 +1,7 @@
-let clientes = [];
+let universidades = [];
 let keynum;
 
 export function inicializar() {
-    configureTableFilter(document.getElementById("txtBusquedaUni"),
-            document.getElementById("tblUni"));
     refrescarTabla();
 }
 
@@ -30,11 +28,44 @@ export function refrescarTabla() {
             });
 }
 
+export function buscar() {
+    let filtro = document.getElementById("txtBusquedaUni").value;
+    let url;
+    if(filtro==="")
+    {
+    url = "api/Uni/buscar?filtro=" + filtro;
+    }
+    else
+    {
+     filtro = document.getElementById("cmbFiltro").value;   
+     url = "api/Uni/getAll?filtro=" + filtro;   
+    }
+    fetch(url)
+            .then(response => {
+                return response.json();
+            })
+            .then(function (data)
+            {
+                if (data.exception != null)
+                {
+                    swal.fire('', 'Error interno del servidor. Intente nuevamente más tarde.', 'Error');
+                    return;
+                }
+                if (data.error != null)
+                {
+                    Swal.fire('', data.error, 'warning');
+                    return;
+                }
+                loadTable(data);
+            });
+}
+
+
 export function loadTable(data) {
     let cuerpo = "";
-    clientes = data;
+    universidades = data;
 
-    clientes.forEach(function (Universidad) {
+    universidades.forEach(function (Universidad) {
         let registro =
                 '<tr>' +
                 '<td>' + Universidad.nombre_universidad + '</td>' +
@@ -42,7 +73,7 @@ export function loadTable(data) {
                 '<td><a href="#" onclick="moduloUniversidad.mostrarDetalle(' + Universidad.id_universidad + ')">Seleccionar</a></td>' + '</tr>';
         cuerpo += registro;
     });
-    document.getElementById("tblClientes").innerHTML = cuerpo;
+    document.getElementById("tblUniversidad").innerHTML = cuerpo;
 }
 
 
@@ -98,7 +129,6 @@ export function save() {
 
                 Swal.fire('', "Datos de la universidad actualizados correctamente", 'success');
                 refrescarTabla();
-                document.getElementById("collapseOne").classList.remove("show");
                 document.getElementById("divTbl").classList.remove("d-none");
                 clean();
             });
@@ -108,7 +138,7 @@ export function save() {
 
 //Seleccionar datos
 export function mostrarDetalle(id) {
-    clientes.forEach(function (universidad)
+    universidades.forEach(function (universidad)
     {
         if (id === universidad.id_universidad)
         {
@@ -120,7 +150,6 @@ export function mostrarDetalle(id) {
     });
 
     document.getElementById("btnDelete").classList.remove("disabled");
-    document.getElementById("collapseOne").classList.add("show");
     document.getElementById("divTbl").classList.add("d-none");
 }
 
@@ -166,13 +195,12 @@ export function deleteUni() {
 
                 Swal.fire('', "Universidad eliminada correctamente", 'success');
                 refrescarTabla();
-                document.getElementById("collapseOne").classList.remove("show");
                 document.getElementById("divTbl").classList.remove("d-none");
                 clean();
             });
 }
 
-document.getElementById("btnAccordion").addEventListener("click", ocultarTabla);
+
 
 function ocultarTabla() {
 
@@ -203,7 +231,7 @@ export function askDelete() {
     }).then((result) => {
         if (result.isConfirmed) {
             Swal.fire(
-                    deleteCliente(),
+                    deleteUni(),
                     'Universidad eliminada',
                     'Se ha marcado como inactiva',
                     'success'
@@ -211,6 +239,8 @@ export function askDelete() {
         }
     });
 }
+
+
 
 export function imprimir(el) {
 

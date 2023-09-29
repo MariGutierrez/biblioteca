@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>TODO supply a title</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
+    <head>
+        <title>BIBLIOTECA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <link href="styles/css/estilo.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Menú lateral con clases de Bootstrap -->
+                <nav class="col-md-2 col-lg-3 col-xl-2 d-md-block bg-dark sidebar">
+                    <div class="logo">
+                        <img src="resources/Sans titre.png" alt="Logo">
+                    </div>
+                    <ul>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="inicio.html" style="font-family: arial">Buscar</a>
+                        </li>
+                        <li class="nav-item" id="menOp2">
+                            <a class="nav-link active" onclick="" style="font-family: arial">Libro</a>
+                        </li>
+                        <li class="nav-item" id="menOp3">
+                            <a class="nav-link active"  onclick="cargarModuloUniversidad();" style="font-family: arial">Universidad</a>
+                        </li>
+                        <li class="nav-item" id="menOp4">
+                            <a class="nav-link active"  onclick="" style="font-family: arial">Usuarios</a>
+                        </li>
+                    </ul>
+                    <!-- Botón de Cerrar Sesión -->
+                    <a href="index.html"><button class="logout-button">Cerrar Sesión</button></a>
+                </nav>
+                <!-- Contenido principal -->
+                <main class="col-md-10 col-lg-9 col-xl-10 ml-sm-auto px-4 content" style="background-image: url('resources/libo.jpg'); background-size: 100%; background-repeat: no-repeat;">
+                    <div class="container" id="contPrincipal">
+                        <div class="d-flex justify-content-center align-items-center vh-100">
+                            <div class="row justify-content-center">
+                                <div class="col-md-12" style="width: 1100px">
+                                    <div class="input-group">
+                                        <input class="form-control" type="search" aria-label="Buscar">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
 
-<body>
-    <div class="container">
-        <h2>Para el menu y esas cosas</h2>
-    </div>
+        <!-- Agrega la referencia a Bootstrap JS (opcional) -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+        <script src="js/main.js"></script>
+    </body>
 </html>

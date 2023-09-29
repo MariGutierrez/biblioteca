@@ -1,5 +1,20 @@
-let moduloAccesorio;
-let moduloSoluciones;
+tipoUSer();
+function tipoUSer()
+{
+    let rol = localStorage.getItem("user").toString();
+    if(rol === "Administrador")
+    {
+        
+    }
+    else
+    {
+        document.getElementById("menOp2").classList.add("d-none");
+        document.getElementById("menOp3").classList.add("d-none");
+        document.getElementById("menOp4").classList.add("d-none");
+    }
+    console.log(rol);
+}
+
 
 function ingresar() {
 
@@ -23,4 +38,23 @@ function ingresar() {
                 });
 }
 
-
+let moduloUniversidad;
+function cargarModuloUniversidad(){
+    fetch("modulo_universidad/view_universidad.html")
+        .then(
+            function(response){
+                return response.text();
+            }
+        )
+        .then(
+            function(html){
+                document.getElementById("contPrincipal").innerHTML = html;
+                import ("../modulo_universidad/controller_universidad.js").then(
+                    function(controller){
+                        moduloUniversidad = controller;
+                        moduloUniversidad.inicializar();
+                    }
+                );
+            }
+        );
+};

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.utl.bli.controller.ControllerLogin;
 import com.utl.bli.model.Usuario;
 import jakarta.ws.rs.DefaultValue;
+import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -17,27 +18,28 @@ public class RESTLogin {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("in")
-    public Response logIn(@QueryParam("usuario") @DefaultValue("") String usuario,
-            @QueryParam("contrasenia") @DefaultValue("") String contrasenia) {
-        Gson gson = new Gson();
+    public Response logIn(@FormParam("nombre_usuario") @DefaultValue("") String nombre_usuario,
+            @FormParam("contrasenia") @DefaultValue("") String contrasenia) {
+       
         String out = null;
-        ControllerLogin cl = new ControllerLogin();
+        Gson gson = new Gson();
         Usuario usu = null;
-
+        ControllerLogin cl = new ControllerLogin();
         try {
-            usu = cl.login(usuario, contrasenia);
+            
+            usu = cl.login(nombre_usuario, contrasenia);
             if (usu != null) {
                 out = new Gson().toJson(usu);
-            } else {
-                out = "{\"error\" : \"Operación denegada, inicia sesión.\"}";
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            out = """
-                  {"exception" : "%s"}
-                  """;
-            out = String.format(out, ex.toString());
+            else{
+                out = "{\"error\": 'Usuario y/o contraseña incorrectos'}";
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            out = "{\"exception\":\"Error interno del servidor.\"}";
         }
+        
         return Response.status(Response.Status.OK).entity(out).build();
     }
 }

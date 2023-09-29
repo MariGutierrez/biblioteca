@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>BIBLIOTECA</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link href="styles/css/estilo.css" rel="stylesheet"/>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
         <style>
@@ -62,22 +61,22 @@
         </section>
     </body>
 
-    <script src="js/main.js"></script>         
+    <script src="controllerIndex.js"></script>
     <script>
-                                            const abrirLogin = document.getElementById("abrirLogin");
-                                            const login = document.getElementById("login");
+        const abrirLogin = document.getElementById("abrirLogin");
+        const login = document.getElementById("login");
 
-                                            abrirLogin.addEventListener("click", () => {
-                                                login.style.display = "block";
-                                                login.classList.add("show");
-                                                document.body.classList.add("modal-open");
-                                            });
+        abrirLogin.addEventListener("click", () => {
+        login.style.display = "block";
+        login.classList.add("show");
+        document.body.classList.add("modal-open");
+        });
 
-                                            login.querySelector(".close").addEventListener("click", () => {
-                                                login.style.display = "none";
-                                                login.classList.remove("show");
-                                                document.body.classList.remove("modal-open");
-                                            });
+        login.querySelector(".close").addEventListener("click", () => {
+        login.style.display = "none";
+        login.classList.remove("show");
+        document.body.classList.remove("modal-open");
+        });
     </script>
 
 </html>

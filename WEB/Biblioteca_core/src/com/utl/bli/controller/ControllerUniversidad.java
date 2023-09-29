@@ -59,7 +59,7 @@ public class ControllerUniversidad {
     }
 
     public void update(Universidad c) throws Exception {
-        String sql = "UPDATE universidad nombre_universidad='"+c.getNombre_universidad()+"', pais='"+c.getPais()+"', estatus="+c.getEstatus()+" WHERE id_universidad ="+c.getId_universidad();
+        String sql = "UPDATE universidad SET nombre_universidad='"+c.getNombre_universidad()+"', pais='"+c.getPais()+"', estatus="+c.getEstatus()+" WHERE id_universidad ="+c.getId_universidad();
 
         ConexionMySQL connMySQL = new ConexionMySQL();
 
@@ -117,7 +117,7 @@ public class ControllerUniversidad {
     
     public List<Universidad> buscar(String filtro) throws Exception {
         //aqui se ejecuta la consulta sql
-        String sql = "SELECT * FROM universidad WHERE nombre="+filtro;
+        String sql = "SELECT * FROM universidad WHERE nombre_universidad LIKE '%"+filtro+"%'";
 
         //Con este objeto se conecta a la Base de Datos
         ConexionMySQL connMySQL = new ConexionMySQL();
