@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-let moduloUniversidad;
-=======
 tipoUSer();
 function tipoUSer()
 {
@@ -40,7 +37,6 @@ function ingresar() {
                    window.location.href = 'inicio.html';
                 });
 }
->>>>>>> 01aa28975e78a4e417658a2b10f894bb3da970fe
 
 let moduloUniversidad;
 function cargarModuloUniversidad(){
@@ -61,7 +57,7 @@ function cargarModuloUniversidad(){
                 );
             }
         );
-<<<<<<< HEAD
+
 }
 
 let moduloLibro;
@@ -83,7 +79,6 @@ function cargarModuloLibro(){
                 );
             }
         );
-}
-=======
+
 };
->>>>>>> 01aa28975e78a4e417658a2b10f894bb3da970fe
+
