@@ -53,6 +53,7 @@ CREATE TABLE libro(
     no_paginas INT,
     libro LONG NOT NULL,
 	estatus BIT,
+    derecho_autor BIT,
 	CONSTRAINT fk_libro_univerisidad FOREIGN KEY (id_universidad) REFERENCES universidad(id_universidad)
 );
 

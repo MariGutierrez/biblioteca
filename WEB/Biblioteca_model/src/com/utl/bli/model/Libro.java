@@ -13,13 +13,13 @@ public class Libro {
     private int no_paginas;
     private String libro;
     private boolean estatus;
-    Universidad universidad;
+    private boolean derecho_autor;
+    private Universidad universidad;
 
     public Libro() {
     }
-    
 
-    public Libro(int id_libro, String titulo, String autor, String editorial, String idioma, String genero, int no_paginas, String libro, boolean estatus, Universidad universidad) {
+    public Libro(int id_libro, String titulo, String autor, String editorial, String idioma, String genero, int no_paginas, String libro, boolean estatus, boolean derecho_autor, Universidad universidad) {
         this.id_libro = id_libro;
         this.titulo = titulo;
         this.autor = autor;
@@ -29,6 +29,16 @@ public class Libro {
         this.no_paginas = no_paginas;
         this.libro = libro;
         this.estatus = estatus;
+        this.derecho_autor = derecho_autor;
+        this.universidad = universidad;
+    }
+
+   
+    public Universidad getUniversidad() {
+        return universidad;
+    }
+
+    public void setUniversidad(Universidad universidad) {
         this.universidad = universidad;
     }
 
@@ -104,20 +114,21 @@ public class Libro {
         this.estatus = estatus;
     }
 
-    public Universidad getUniversidad() {
-        return universidad;
+    public boolean isDerecho_autor() {
+        return derecho_autor;
     }
 
-    public void setUniversidad(Universidad universidad) {
-        this.universidad = universidad;
+    public void setDerecho_autor(boolean derecho_autor) {
+        this.derecho_autor = derecho_autor;
     }
     
     
     @Override
     public String toString() {
         return "Libro{" + "id=" + id_libro + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial +
-                ", idioma=" + idioma + ", genero=" + genero + ", num_pag=" + no_paginas +'}';
+                ", idioma=" + idioma + ", genero=" + genero + ", num_pag=" + no_paginas + ", universidad=" + universidad + "}";
+
     }
-    
+
     
 }

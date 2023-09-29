@@ -22,12 +22,16 @@ import java.util.List;
 public class ControllerLibro {
     
     public void insert(Libro l) throws Exception {
-        String sql = "INSERT INTO libro VALUES (0,?,?,?,?,?,?,?,?,1);" ;
+        String sql = "INSERT INTO libro VALUES (0,?,?,?,?,?,?,?,?,?,1);" ;
+        
+        int idLibroG = -1;
 
         ConexionMySQL connMySQL = new ConexionMySQL();
         Connection conn = connMySQL.open();
-        PreparedStatement ps = conn.prepareStatement(sql);        
+        //CallableStatement cstmt = conn.prepareCall(sql);
+        PreparedStatement ps = conn.prepareStatement(sql);    
         
+        //cstmt.setInt(1, l.getId_libro());
         ps.setInt(1, l.getUniversidad().getId_universidad());
         ps.setString(2,l.getTitulo());        
         ps.setString(3, l.getAutor());
@@ -36,15 +40,32 @@ public class ControllerLibro {
         ps.setString(6, l.getGenero());
         ps.setInt(7, l.getNo_paginas());
         ps.setString(8, l.getLibro());
+        ps.setBoolean(9, l.isDerecho_autor());
         ps.executeUpdate();
         // Cerrar la conexion 
         ps.close();
         connMySQL.close();
     }
+
     
-     public void update(Libro l) throws Exception {
-        String sql = "UPDATE libro SET libro = ? WHERE id_universidad = ?";
-        
+    public void update(Libro l) throws Exception {
+        String sql = "UPDATE libro SET libro='"+l.getLibro()+" WHERE id_libro ="+l.getId_libro();
+
+        ConexionMySQL connMySQL = new ConexionMySQL();
+
+        Connection conn = connMySQL.open();
+
+        Statement cstmt = conn.createStatement();
+        PreparedStatement ps = conn.prepareStatement(sql); 
+        //cstmt.executeUpdate(sql);
+        ps.close();
+        connMySQL.close();
+    }
+    
+    public void delete(int id) throws Exception {
+
+        String sql = "UPDATE libro SET estatus = 0 WHERE id_libro= " + id;
+
         ConexionMySQL connMySQL = new ConexionMySQL();
 
         Connection conn = connMySQL.open();
@@ -53,8 +74,29 @@ public class ControllerLibro {
         cstmt.executeUpdate(sql);
         cstmt.close();
         connMySQL.close();
+
     }
     
+    public List<Libro> buscar(String filtro) throws Exception {
+        String sql = "SELECT * FROM libro WHERE titulo LIKE '%"+filtro+"%'";
+        ConexionMySQL connMySQL = new ConexionMySQL();
+        Connection conn = connMySQL.open();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+
+        List<Libro> libros = new ArrayList<>();
+
+        while (rs.next()) {
+            libros.add(fill(rs));
+        }
+
+        rs.close();
+        pstmt.close();
+        connMySQL.close();
+
+        return libros;
+    }
+
     public void verPDF(int id) throws SQLException, IOException{
         String sql = "SELECT libro FROM libro WHERE id_libro = ?;" ;
        
@@ -89,9 +131,9 @@ public class ControllerLibro {
     }
 
     
-    public List<Libro> getAll(String filtro) throws Exception {
+    public List<Libro> getAll() throws Exception {
         //La consulta SQL a ejecutar:
-        String sql = "SELECT * FROM libro WHERE titulo='" + filtro+"'";
+        String sql = "SELECT * FROM libro;";
         ConexionMySQL connMySQL = new ConexionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -114,6 +156,7 @@ public class ControllerLibro {
         Libro l = new Libro();
         
         l.setId_libro(rs.getInt("id_libro"));
+        l.setTitulo(rs.getString("titulo"));
         l.setAutor(rs.getString("autor"));
         l.setEditorial(rs.getString("editorial"));
         l.setIdioma(rs.getString("idioma"));
@@ -121,6 +164,7 @@ public class ControllerLibro {
         l.setNo_paginas(rs.getInt("no_paginas"));
         l.setLibro(rs.getString("libro"));
         l.setEstatus(rs.getBoolean("estatus"));
+        l.setDerecho_autor(rs.getBoolean("derecho_autor"));
         
         l.setUniversidad(new Universidad());
         l.getUniversidad().setId_universidad(rs.getInt("id_universidad"));
@@ -129,3 +173,4 @@ public class ControllerLibro {
     }
     
 }
+ 

@@ -61,22 +61,23 @@
         </section>
     </body>
 
-    <script src="js/main.js"></script>         
+    <script src="js/main.js"></script>
+    <script src="controllerIndex.js"></script>
     <script>
-                                            const abrirLogin = document.getElementById("abrirLogin");
-                                            const login = document.getElementById("login");
+        const abrirLogin = document.getElementById("abrirLogin");
+        const login = document.getElementById("login");
 
-                                            abrirLogin.addEventListener("click", () => {
-                                                login.style.display = "block";
-                                                login.classList.add("show");
-                                                document.body.classList.add("modal-open");
-                                            });
+        abrirLogin.addEventListener("click", () => {
+        login.style.display = "block";
+        login.classList.add("show");
+        document.body.classList.add("modal-open");
+        });
 
-                                            login.querySelector(".close").addEventListener("click", () => {
-                                                login.style.display = "none";
-                                                login.classList.remove("show");
-                                                document.body.classList.remove("modal-open");
-                                            });
+        login.querySelector(".close").addEventListener("click", () => {
+        login.style.display = "none";
+        login.classList.remove("show");
+        document.body.classList.remove("modal-open");
+        });
     </script>
 
 </html>

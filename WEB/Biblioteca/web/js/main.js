@@ -21,8 +21,7 @@ function cargarModuloUniversidad(){
 }
 
 let moduloLibro;
-
-function cargarmoduloLibro(){
+function cargarModuloLibro(){
     fetch("modulo_libro/view_libro.html")
         .then(
             function(response){
@@ -32,7 +31,7 @@ function cargarmoduloLibro(){
         .then(
             function(html){
                 document.getElementById("contPrincipal").innerHTML = html;
-                import ("modulo_libro/controller_libro.js").then(
+                import ("../modulo_libro/controller_libro.js").then(
                     function(controller){
                         moduloLibro = controller;
                         moduloLibro.inicializar();
@@ -41,5 +40,3 @@ function cargarmoduloLibro(){
             }
         );
 }
-
-

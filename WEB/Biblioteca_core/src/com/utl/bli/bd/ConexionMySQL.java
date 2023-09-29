@@ -10,7 +10,7 @@ public class ConexionMySQL {
     public Connection open() {
         
         String user = "root";
-        String password = "1234";
+        String password = "root";
         String url = "jdbc:mysql://localhost:3306/bibliotecavirtual?useSSL=false&useUnicode=true&characterEncoding=utf-8";
         
         try{
