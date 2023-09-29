@@ -46,14 +46,14 @@ public class RESTLibro {
     @GET
     @Path("getAll")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll() {        
+    public Response getAll(@QueryParam("filtro") @DefaultValue("") String filtro) {
         String out = null;
         ControllerLibro cl = null;
         List<Libro> libros = null;
 
         try {
             cl = new ControllerLibro();
-            libros = cl.getAll();
+            libros = cl.getAll(filtro);
             out = new Gson().toJson(libros);
         } catch (Exception e) {
             e.printStackTrace();

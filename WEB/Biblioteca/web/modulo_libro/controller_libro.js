@@ -80,7 +80,6 @@ export function buscar() {
             });
 }
 
-
 export function save() {
     let datos = null;
     let params = null;
@@ -148,7 +147,6 @@ export function save() {
 
 }
 
-
 export function mostrarDetalle(id) {
     libros.forEach(function (libro){
         if (id === libro.id_libro){
@@ -160,15 +158,21 @@ export function mostrarDetalle(id) {
             document.getElementById("num").value = libro.no_paginas;         
             document.getElementById("cmbDerecho").value = libro.derecho_autor;
             document.getElementById("txtCodigoImagen").value = libro.libro;
+            document.getElementById("txtIdLibro").value = libro.id_libro;
             
-            document.getElementById("imgFoto").src = "data:image/" +
-                    getImageFormat(fotoB64) + ";base64," + libro.id_libro;
+            //document.getElementById("imgFoto").src = "data:pdf/" +
+              //     getImageFormat(fotoB64) + ";base64," + libro.id_libro;
+              
+              mostrarPDFDesdeBase64();
+              refrescarTabla();
+         
         }
     });
 
-    document.getElementById("btnDelete").classList.remove("disabled");
+    //document.getElementById("btnDelete").classList.remove("disabled");
     document.getElementById("divTbl").classList.add("d-none");
 }
+
 
 export function clean() {
     document.getElementById("titulo").value = " ";
@@ -179,8 +183,9 @@ export function clean() {
             document.getElementById("num").value = "";
             document.getElementById("archivo").value = "";
             document.getElementById("txtIdLibro").value = "";
+            document.getElementById("cmbDerecho").value = "";
+            document.getElementById("txtCodigoImagen").value = "";
 }
-
 
 //Eliminar
 export function deleteLibro() {
@@ -224,22 +229,6 @@ export function deleteLibro() {
 
 
 
-function ocultarTabla() {
-
-    if (document.getElementById("divTbl").classList.contains("d-none")) {
-        ocultar();
-    } else {
-        mostrar();
-    }
-}
-
-function mostrar() {
-    document.getElementById("divTbl").classList.add("d-none");
-}
-function ocultar() {
-    document.getElementById("divTbl").classList.remove("d-none");
-}
-
 export function askDelete() {
     Swal.fire({
         title: '¿Deseas eliminar este libro?',
@@ -262,8 +251,6 @@ export function askDelete() {
     });
 }
 
-
-
 export function imprimir(el) {
 
     var restorepage = document.body.innerHTML;
@@ -285,72 +272,6 @@ export function soloNumeros(evt) {
         return true;
     } else {
         Swal.fire('', "Solo debes ingresar números.", 'warning');
-        return false;
-    }
-}
-
-export function soloEspeciales(evt) {
-    if (window.event) {
-        keynum = evt.keyCode;
-    } else {
-        keynum = evt.which;
-    }
-
-    if ((keynum > 47 && keynum < 58) || keynum === 8 || keynum === 13 || keynum >= 97 && keynum <= 103
-            || keynum === 105 || keynum === 111 || keynum === 117 || keynum === 35 || keynum === 45 || keynum === 13) {
-        return true;
-    } else {
-        Swal.fire('', "Solo puedes ingresar numeros y los digitos siguientes: 'a''b''c''d''e'f'g''i''o''u''#''-'", 'warning');
-        return false;
-    }
-}
-
-export function soloNumerosYLetras(evt) {
-    if (window.event) {
-        keynum = evt.keyCode;
-    } else {
-        keynum = evt.which;
-    }
-
-    if ((keynum > 47 && keynum < 58) || keynum === 20 || keynum === 32 || keynum === 9 || keynum === 8 || keynum === 13 || keynum > 64 && keynum < 91 || keynum > 96 && keynum < 123) {
-        return true;
-    } else {
-        Swal.fire('', "Solo debes ingresar números y letras.", 'warning');
-        return false;
-    }
-}
-
-export function soloLetras(e) {
-    let key = e.keyCode || e.which;
-    let tecla = String.fromCharCode(key).toString();
-    let letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚabcdefghijklmnñopqrstuvwxyzáéíóú";
-
-    let especiales = [8, 9, 13, 32, 20, 15, 132, 133, 126, 241, 209];
-    let tecla_especial = false;
-    for (var i in especiales) {
-        if (key === especiales[i]) {
-            tecla_especial = true;
-            break;
-        }
-    }
-
-    if (letras.indexOf(tecla) === -1 && !tecla_especial) {
-        Swal.fire('', "Solo debes ingresar letras.", 'warning');
-        return false;
-    }
-}
-
-export function soloNumerosDiagonales(evt) {
-    if (window.event) {
-        keynum = evt.keyCode;
-    } else {
-        keynum = evt.which;
-    }
-
-    if ((keynum > 47 && keynum < 58) || keynum === 8 || keynum === 13 || keynum === 47 || keynum === 13) {
-        return true;
-    } else {
-        Swal.fire('', "Solo debes ingresar números y diagonales.", 'warning');
         return false;
     }
 }
@@ -404,3 +325,16 @@ export function getImageFormat(strb64) {
     }
 }
 
+function mostrarPDFDesdeBase64() {
+    
+    let b64 = document.getElementById("txtCodigoImagen").value;
+    // Decode Base64 to binary and show some information about the PDF file (note that I skipped all checks)
+    var bin = atob(b64);
+    console.log('File Size:', Math.round(bin.length / 1024), 'KB');
+    console.log('PDF Version:', bin.match(/^.PDF-([0-9.]+)/)[1]);
+    
+    // Embed the PDF into the HTML page and show it to the user
+    
+    document.getElementById("imgFoto").src = 'data:application/pdf;base64,' + b64;
+    
+}

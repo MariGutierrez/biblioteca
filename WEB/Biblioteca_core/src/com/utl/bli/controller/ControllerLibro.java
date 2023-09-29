@@ -24,6 +24,7 @@ public class ControllerLibro {
     public void insert(Libro l) throws Exception {
         String sql = "INSERT INTO libro VALUES (0,?,?,?,?,?,?,?,?,?,1);" ;
         
+       
         int idLibroG = -1;
 
         ConexionMySQL connMySQL = new ConexionMySQL();
@@ -131,9 +132,9 @@ public class ControllerLibro {
     }
 
     
-    public List<Libro> getAll() throws Exception {
+    public List<Libro> getAll(String filtro) throws Exception {
         //La consulta SQL a ejecutar:
-        String sql = "SELECT * FROM libro;";
+        String sql = "SELECT * FROM libro WHERE estatus="+filtro;
         ConexionMySQL connMySQL = new ConexionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql);

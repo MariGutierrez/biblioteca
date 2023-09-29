@@ -23,13 +23,18 @@ CREATE TABLE usuario (
     estatus BIT DEFAULT 1 
 );
 
+
 -- ------------- TABLA ALUMNO -------------- --
 CREATE TABLE alumno(
 	id_alumno INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	id_persona INT NOT NULL,
 	id_usuario INT NOT NULL,
 	matricula VARCHAR(10),
-	estatus BIT DEFAULT 1
+	estatus BIT DEFAULT 1,
+    CONSTRAINT fk_alumno_persona FOREIGN KEY (id_persona) 
+                REFERENCES persona(id_Persona),
+    CONSTRAINT fk_alumno_usuario FOREIGN KEY (id_Usuario) 
+                REFERENCES usuario(id_Usuario)
 );
 
 -- ------------- TABLA UNIVERSIDAD -------------- --
