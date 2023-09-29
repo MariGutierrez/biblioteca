@@ -34,10 +34,21 @@ function ingresar() {
             return;
         }
         if (data.nombre_usuario != null && data.contrasenia != null) {
+<<<<<<< HEAD
+=======
+            
+            let tipoUser = data.rol;
+            console.log(tipoUser);
+            localStorage.setItem("user", tipoUser);
+>>>>>>> 01aa28975e78a4e417658a2b10f894bb3da970fe
             window.location = "inicio.html";
         } else {
             Swal.fire('', 'Usuario y/o contraseña incorrectos.', 'warning');
         }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 01aa28975e78a4e417658a2b10f894bb3da970fe
     })
     .catch(error => {
         console.error(error);
