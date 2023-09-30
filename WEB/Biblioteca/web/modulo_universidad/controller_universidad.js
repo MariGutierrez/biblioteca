@@ -141,6 +141,7 @@ export function mostrarDetalle(id) {
     {
         if (id === universidad.id_universidad)
         {
+            console.log(universidad.pais);
             document.getElementById("txtNombreUni").value = universidad.nombre_universidad;
             document.getElementById("cmbPais").value = universidad.pais;
             document.getElementById("txtIdUni").value = universidad.id_universidad;

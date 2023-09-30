@@ -3,7 +3,7 @@
         <div class="container">
             <h1 class="mt-4">Registro de Libros</h1>
 
-            <div class="col-md-4 form-floating ">
+            <div class="col-md-4 form-floating d-none">
                 <input id="txtIdLibro" type="text" class="form-control mt-2" readonly>
                 <label for="txtIdLibro" class="mt-2 ">ID</label>
             </div>
@@ -44,11 +44,13 @@
                             <input type="number" class="form-control" id="num" name="num">
                         </div>
 
+                                                
                         <div class="col-md-6">
-                            <label for="dere">¿Tiene derechos de autor?</label>
-                            <select name="cmbDerecho" class="form-control" style="width: 200px" id="cmbDerecho">                    
-                                <option value="1">Sí</option>
-                                <option value="0">No</option>
+                            <label for="dere">Derechos de autor:</label>
+                            <select name="cmbDerecho" id="cmbDerecho" class="form-control">
+                                <option value="Escoge una opción" selected disabled>Escoge una opción</option>
+                                <option value="true">Sí</option>
+                                <option value="false">No</option>
                             </select>
                         </div>
                         

@@ -105,8 +105,6 @@ export function save() {
     libro.libro = document.getElementById("txtCodigoImagen").value;
     libro.derecho_autor = document.getElementById("cmbDerecho").value;
     
-
-    
     //libro.estatus = 1;
 
     datos = {
@@ -141,7 +139,6 @@ export function save() {
                 }
                 Swal.fire('', "Registro de libro exitoso", 'success');
                 refrescarTabla();
-                document.getElementById("divTbl").classList.remove("d-none");
                 clean();
             });
 
@@ -155,43 +152,58 @@ export function mostrarDetalle(id) {
             document.getElementById("editorial").value = libro.editorial;
             document.getElementById("idioma").value = libro.idioma;
             document.getElementById("genero").value = libro.genero;
-            document.getElementById("num").value = libro.no_paginas;         
-            document.getElementById("cmbDerecho").value = libro.derecho_autor;
+            document.getElementById("num").value = libro.no_paginas;
+            document.getElementById("cmbDerecho").value = libro.derecho_autor.toString();
             document.getElementById("txtCodigoImagen").value = libro.libro;
             document.getElementById("txtIdLibro").value = libro.id_libro;
             
+            document.getElementById("titulo").disabled = true;
+            document.getElementById("autor").disabled = true;
+            document.getElementById("editorial").disabled = true;
+            document.getElementById("idioma").disabled = true;
+            document.getElementById("genero").disabled = true;
+            document.getElementById("num").disabled = true;
+            document.getElementById("cmbDerecho").disabled = true;
             //document.getElementById("imgFoto").src = "data:pdf/" +
-              //     getImageFormat(fotoB64) + ";base64," + libro.id_libro;
-              
+            //     getImageFormat(fotoB64) + ";base64," + libro.id_libro;
               mostrarPDFDesdeBase64();
               refrescarTabla();
+              
+             
          
         }
     });
 
     //document.getElementById("btnDelete").classList.remove("disabled");
-    document.getElementById("divTbl").classList.add("d-none");
 }
 
 
 export function clean() {
     document.getElementById("titulo").value = " ";
-            document.getElementById("autor").value = "";
-            document.getElementById("editorial").value = "";
-            document.getElementById("idioma").value = "";
-            document.getElementById("genero").value = "";
-            document.getElementById("num").value = "";
-            document.getElementById("archivo").value = "";
-            document.getElementById("txtIdLibro").value = "";
-            document.getElementById("cmbDerecho").value = "";
-            document.getElementById("txtCodigoImagen").value = "";
+    document.getElementById("autor").value = "";
+    document.getElementById("editorial").value = "";
+    document.getElementById("idioma").value = "";
+    document.getElementById("genero").value = "";
+    document.getElementById("num").value = "";
+    document.getElementById("txtIdLibro").value = "";
+    document.getElementById("cmbDerecho").value = "";
+    document.getElementById("txtCodigoImagen").value = "";
+    document.getElementById("imgFoto").setAttribute("src", "");
+    
+    document.getElementById("titulo").disabled = false;
+    document.getElementById("autor").disabled = false;
+    document.getElementById("editorial").disabled = false;
+    document.getElementById("idioma").disabled = false;
+    document.getElementById("genero").disabled = false;
+    document.getElementById("num").disabled = false;
+    document.getElementById("cmbDerecho").disabled = false;            
 }
 
 //Eliminar
 export function deleteLibro() {
     let id2 = document.getElementById("txtIdLibro").value;
     let datos = {
-        id: id2
+        datosLibro: id2
     };
     let params = new URLSearchParams(datos);
     fetch("api/libro/delete",
@@ -222,7 +234,6 @@ export function deleteLibro() {
 
                 Swal.fire('', "Libro eliminada correctamente", 'success');
                 refrescarTabla();
-                document.getElementById("divTbl").classList.remove("d-none");
                 clean();
             });
 }
@@ -328,12 +339,11 @@ export function getImageFormat(strb64) {
 function mostrarPDFDesdeBase64() {
     
     let b64 = document.getElementById("txtCodigoImagen").value;
-    // Decode Base64 to binary and show some information about the PDF file (note that I skipped all checks)
+    
     var bin = atob(b64);
     console.log('File Size:', Math.round(bin.length / 1024), 'KB');
     console.log('PDF Version:', bin.match(/^.PDF-([0-9.]+)/)[1]);
     
-    // Embed the PDF into the HTML page and show it to the user
     
     document.getElementById("imgFoto").src = 'data:application/pdf;base64,' + b64;
     

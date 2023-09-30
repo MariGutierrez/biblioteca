@@ -66,28 +66,28 @@ public class RESTLibro {
     @Produces(MediaType.APPLICATION_JSON)
     @POST      
     public Response save(@FormParam("datosLibro") @DefaultValue("") String datosLibro) {
+        
         String out = null;
         Gson gson = new Gson();
         Libro li = null;
         ControllerLibro cl = new ControllerLibro();
+
         try {
-            
             li = gson.fromJson(datosLibro, Libro.class);
             int id = li.getId_libro();
             System.out.println(id);
-            out = gson.toJson(li);
             if (id<=0) {
                 cl.insert(li);
             } else {
                 cl.update(li);
-            }
-        out = gson.toJson(li);
+            }            
+            out = gson.toJson(li);
         } catch (Exception e) {
-            e.printStackTrace();
-            out = """
-                  {"result":"error"}
-                  """;
-        }
+                e.printStackTrace();
+                out = """
+                      {"result":"error"}
+                      """;
+            }
         return Response.status(Response.Status.OK).entity(out).build();
     }
     
@@ -103,8 +103,8 @@ public class RESTLibro {
         ControllerLibro cl = new ControllerLibro();
 
         try {
-            l = gson.fromJson(datosLibro, Libro.class);
-            cl.delete(l.getId_libro());
+           // l = gson.fromJson(datosLibro, Libro.class);
+            cl.delete(Integer.parseInt(datosLibro));
             out = gson.toJson(l);
         } catch (JsonParseException jpe) {
             jpe.printStackTrace();

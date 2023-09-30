@@ -82,3 +82,25 @@ function cargarModuloLibro(){
 
 };
 
+let moduloBuscarL;
+function cargarModuloBuscarLibroA(){
+    fetch("modulo_buscarLibroA/view_buscarLA.html")
+        .then(
+            function(response){
+                return response.text();
+            }
+        )
+        .then(
+            function(html){
+                document.getElementById("contPrincipal").innerHTML = html;
+                import ("../modulo_buscarLibroA/controller_buscarLA.js").then(
+                    function(controller){
+                        moduloBuscarL = controller;
+                        moduloBuscarL.inicializar();
+                    }
+                );
+            }
+        );
+
+};
+

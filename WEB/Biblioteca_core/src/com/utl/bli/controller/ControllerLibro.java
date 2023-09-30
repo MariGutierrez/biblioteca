@@ -22,9 +22,8 @@ import java.util.List;
 public class ControllerLibro {
     
     public void insert(Libro l) throws Exception {
-        String sql = "INSERT INTO libro VALUES (0,?,?,?,?,?,?,?,?,?,1);" ;
-        
-       
+        String sql = "INSERT INTO libro (id_universidad, titulo, autor, editorial, idioma, genero, no_paginas, libro, derecho_autor) VALUES (?,?,?,?,?,?,?,?,?);" ;
+
         int idLibroG = -1;
 
         ConexionMySQL connMySQL = new ConexionMySQL();
@@ -50,16 +49,14 @@ public class ControllerLibro {
 
     
     public void update(Libro l) throws Exception {
-        String sql = "UPDATE libro SET libro='"+l.getLibro()+" WHERE id_libro ="+l.getId_libro();
+        String sql = "UPDATE libro SET libro='"+l.getLibro()+"' WHERE id_libro ="+l.getId_libro();
 
         ConexionMySQL connMySQL = new ConexionMySQL();
 
         Connection conn = connMySQL.open();
-
         Statement cstmt = conn.createStatement();
-        PreparedStatement ps = conn.prepareStatement(sql); 
-        //cstmt.executeUpdate(sql);
-        ps.close();
+        cstmt.executeUpdate(sql);
+        cstmt.close();
         connMySQL.close();
     }
     
@@ -80,6 +77,26 @@ public class ControllerLibro {
     
     public List<Libro> buscar(String filtro) throws Exception {
         String sql = "SELECT * FROM libro WHERE titulo LIKE '%"+filtro+"%'";
+        ConexionMySQL connMySQL = new ConexionMySQL();
+        Connection conn = connMySQL.open();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+
+        List<Libro> libros = new ArrayList<>();
+
+        while (rs.next()) {
+            libros.add(fill(rs));
+        }
+
+        rs.close();
+        pstmt.close();
+        connMySQL.close();
+
+        return libros;
+    }
+    
+    public List<Libro> buscarA(String filtro) throws Exception {
+        String sql = "SELECT * FROM libro WHERE estatus = 1 AND titulo LIKE '%"+filtro+"%'";
         ConexionMySQL connMySQL = new ConexionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -167,8 +184,12 @@ public class ControllerLibro {
         l.setEstatus(rs.getBoolean("estatus"));
         l.setDerecho_autor(rs.getBoolean("derecho_autor"));
         
+        
         l.setUniversidad(new Universidad());
         l.getUniversidad().setId_universidad(rs.getInt("id_universidad"));
+        
+       
+
         
         return l;
     }
