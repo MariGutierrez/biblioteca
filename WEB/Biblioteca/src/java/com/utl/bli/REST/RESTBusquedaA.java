@@ -34,4 +34,24 @@ public class RESTBusquedaA {
         }
         return Response.status(Response.Status.OK).entity(out).build();
     }
+    
+    @GET
+    @Path("buscarB")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscar2(@QueryParam("filtro") @DefaultValue("") String filtro) {
+
+        String out = null;
+        ControllerLibro cl = null;
+        List<Libro> libros = null;
+
+        try {
+            cl = new ControllerLibro();
+            libros = cl.buscarB(filtro);
+            out = new Gson().toJson(libros);
+        } catch (Exception e) {
+            e.printStackTrace();
+            out = "{\"exception\":\"Error interno del servidor.\"}";
+        }
+        return Response.status(Response.Status.OK).entity(out).build();
+    }
 }

@@ -1,3 +1,25 @@
+let moduloBuscarL;
+function cargarModuloBuscarLibroB(){
+    fetch("modulo_buscarLibroB/view_buscarLB.html")
+        .then(
+            function(response){
+                return response.text();
+            }
+        )
+        .then(
+            function(html){
+                document.getElementById("contPrincipal").innerHTML = html;
+                import ("../modulo_buscarLibroB/controller_buscarLB.js").then(
+                    function(controller){
+                        moduloBuscarL = controller;
+                        moduloBuscarL.inicializar();
+                    }
+                );
+            }
+        );
+
+};
+
 function ingresar() {
     let datos = null;
     let params = null;
@@ -49,3 +71,4 @@ function ingresar() {
         Swal.fire('', 'Usuario y/o contraseña incorrectos.', 'error');
     });
 }
+

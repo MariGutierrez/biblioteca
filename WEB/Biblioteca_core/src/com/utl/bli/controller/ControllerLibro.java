@@ -114,6 +114,25 @@ public class ControllerLibro {
 
         return libros;
     }
+    public List<Libro> buscarB(String filtro) throws Exception {
+        String sql = "SELECT * FROM libro WHERE estatus = 1 AND derecho_autor=0 AND titulo LIKE '%"+filtro+"%'";
+        ConexionMySQL connMySQL = new ConexionMySQL();
+        Connection conn = connMySQL.open();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+
+        List<Libro> libros = new ArrayList<>();
+
+        while (rs.next()) {
+            libros.add(fill(rs));
+        }
+
+        rs.close();
+        pstmt.close();
+        connMySQL.close();
+
+        return libros;
+    }
 
     public void verPDF(int id) throws SQLException, IOException{
         String sql = "SELECT libro FROM libro WHERE id_libro = ?;" ;
