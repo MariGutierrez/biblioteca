@@ -19,8 +19,9 @@ export function loadTable(data) {
                 '<tr>' +
                 '<td>' + Libro.titulo + '</td>' +
                 '<td>' + Libro.autor + '</td>' +
+                '<td>' + Libro.universidad.nombre_universidad + '</td>' +
+                '<td><a href="#" onclick="moduloBuscarL.mostrarDetalle(' + Libro.id_libro + ')"><img src="resources/ojo.jpg" style="height: 25px; width: 30px;"></a></td>' + '</tr>';
                 
-                '<td><a href="#" onclick="moduloBuscarL.mostrarDetalle(' + Libro.id_libro + ')">Seleccionar</a></td>' + '</tr>';
         cuerpo += registro;
     });
     document.getElementById("tblLibro").innerHTML = cuerpo;

@@ -76,7 +76,7 @@ public class ControllerLibro {
     }
     
     public List<Libro> buscar(String filtro) throws Exception {
-        String sql = "SELECT * FROM libro WHERE titulo LIKE '%"+filtro+"%'";
+        String sql = "SELECT l.*, u.id_universidad, u.nombre_universidad, u.pais FROM libro l INNER JOIN universidad u ON l.id_universidad = u.id_universidad WHERE titulo LIKE '%"+filtro+"%'";
         ConexionMySQL connMySQL = new ConexionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -96,7 +96,7 @@ public class ControllerLibro {
     }
     
     public List<Libro> buscarA(String filtro) throws Exception {
-        String sql = "SELECT * FROM libro WHERE estatus = 1 AND titulo LIKE '%"+filtro+"%'";
+        String sql = "SELECT l.*, u.id_universidad, u.nombre_universidad, u.pais FROM libro l INNER JOIN universidad u ON l.id_universidad = u.id_universidad WHERE l.estatus = 1 AND titulo LIKE '%"+filtro+"%'";
         ConexionMySQL connMySQL = new ConexionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -151,7 +151,7 @@ public class ControllerLibro {
     
     public List<Libro> getAll(String filtro) throws Exception {
         //La consulta SQL a ejecutar:
-        String sql = "SELECT * FROM libro WHERE estatus="+filtro;
+        String sql = "SELECT l.*, u.id_universidad, u.nombre_universidad, u.pais FROM libro l INNER JOIN universidad u ON l.id_universidad = u.id_universidad WHERE l.estatus ="+filtro;
         ConexionMySQL connMySQL = new ConexionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -187,6 +187,7 @@ public class ControllerLibro {
         
         l.setUniversidad(new Universidad());
         l.getUniversidad().setId_universidad(rs.getInt("id_universidad"));
+        l.getUniversidad().setNombre_universidad(rs.getString("nombre_universidad"));
         
        
 
