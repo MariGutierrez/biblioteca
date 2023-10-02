@@ -20,7 +20,7 @@ export function loadTable(data) {
                 '<tr>' +
                 '<td>' + Libro.titulo + '</td>' +
                 '<td>' + Libro.autor + '</td>' +
-                
+                '<td>' + Libro.universidad.nombre_universidad + '</td>' +
                 '<td><a href="#" onclick="moduloBuscarL.mostrarDetalle(' + Libro.id_libro + ')">Seleccionar</a></td>' + '</tr>';
         cuerpo += registro;
     });

@@ -115,7 +115,7 @@ public class ControllerLibro {
         return libros;
     }
     public List<Libro> buscarB(String filtro) throws Exception {
-        String sql = "SELECT * FROM libro WHERE estatus = 1 AND derecho_autor=0 AND titulo LIKE '%"+filtro+"%'";
+        String sql = "SELECT l.*, u.id_universidad, u.nombre_universidad, u.pais FROM libro l INNER JOIN universidad u ON l.id_universidad = u.id_universidad WHERE l.estatus = 1 AND titulo LIKE '%"+filtro+"%' AND derecho_autor=0";
         ConexionMySQL connMySQL = new ConexionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql);

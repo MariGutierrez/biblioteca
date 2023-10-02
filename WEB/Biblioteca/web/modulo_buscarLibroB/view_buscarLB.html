@@ -1,50 +1,52 @@
 <div class="container-fluid row d-flex justify-content-md-center" style="margin-top: 5px; margin-left: 0px; height: 100%;">
-        <div class="card col-lg-12 m-0 p-0">
+    <div class="card col-lg-12 m-0 p-0">
         <div class="container">
-            
+
             <div class="col-md-4 form-floating d-none">
                 <input id="txtIdLibro" type="text" class="form-control mt-2" readonly>
                 <label for="txtIdLibro" class="mt-2 ">ID</label>
             </div>
-    
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        <div class="row mt-12">
-                            <div class="col-5">
-                                <embed id="imgFoto" type="application/pdf" width="440px" height="450px"/>
-                            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    <div class="row mt-12">
+                        <div class="col-5">
+                            <embed id="imgFoto" type="application/pdf" width="440px" height="450px"/>
                         </div>
-                       
-                        <div class="row mt-2 d-none">
-                            <div class="col-12">
-                                <input id="inputFileImagenArmazon" name="inputFileImagenArmazon" type="file" style="width: 257px;" class="mt-2 form-control" required>
-                                <textarea id="txtCodigoImagen" class="col-12" ></textarea>
-                            </div>
+                    </div>
+
+                    <div class="row mt-2 d-none">
+                        <div class="col-12">
+                            <input id="inputFileImagenArmazon" name="inputFileImagenArmazon" type="file" style="width: 257px;" class="mt-2 form-control" required>
+                            <textarea id="txtCodigoImagen" class="col-12" ></textarea>
                         </div>
                     </div>
                 </div>
             </div>
-        </div></div>
-    
-
-
-        <div id="divTbl" class="card col-lg-12 p-1 m-2" style="margin-bottom: 10px; ">
-            <div class="d-flex m-3">
-                <label for="txtBusquedaLibro" class="form-label mx-3">Buscar libro: </label>
-                <input type="text" id="txtBusquedaLibro" class="form-control" style="min-width: 200px; margin-right: 12px" onkeypress="moduloBuscarL.buscar();">        
-                
-            </div>
-            <div id="tabla">
-                <table class="table table-hover" id="tblLib">
-                    <thead class="table-dark" id="tb2">
-                        <tr>
-                            <th>Titulo</th>
-                            <th>Autor</th>
-                            <th>Ver</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tblLibro">
-                    </tbody>
-                </table> 
-            </div>
         </div>
+    </div>
+</div>
+
+
+
+<div id="divTbl" class="card col-lg-12 p-1 m-2" style="margin-bottom: 10px; ">
+    <div class="d-flex m-3">
+        <label for="txtBusquedaLibro" class="form-label mx-3">Buscar libro: </label>
+        <input type="text" id="txtBusquedaLibro" class="form-control" style="min-width: 200px; margin-right: 12px" onkeypress="moduloBuscarL.buscar();">        
+
+    </div>
+    <div id="tabla">
+        <table class="table table-hover" id="tblLib">
+            <thead class="table-dark" id="tb2">
+                <tr>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>Universidad</th>
+                    <th>Ver</th>
+                </tr>
+            </thead>
+            <tbody id="tblLibro">
+            </tbody>
+        </table> 
+    </div>
+</div>
