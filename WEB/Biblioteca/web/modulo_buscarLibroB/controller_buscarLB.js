@@ -20,12 +20,11 @@ export function loadTable(data) {
                 '<tr>' +
                 '<td>' + Libro.titulo + '</td>' +
                 '<td>' + Libro.autor + '</td>' +
-                '<td>' + Libro.universidad.nombre_universidad + '</td>' +
-                '<td><a href="#" onclick="moduloBuscarL.mostrarDetalle(' + Libro.id_libro + ')"><img src="resources/ojo.jpg" style="height: 25px; width: 30px;"></a></td>' + '</tr>';
-            
+                
+                '<td><a href="#" onclick="moduloBuscarL.mostrarDetalle(' + Libro.id_libro + ')">Seleccionar</a></td>' + '</tr>';
         cuerpo += registro;
     });
-
+    
 //    libros2.forEach(function (Libro) {
 //        let registro =
 //                '<tr>' +
@@ -35,21 +34,22 @@ export function loadTable(data) {
 //                '<td><a href="#" onclick="moduloBuscarL.mostrarDetalle(' + Libro.id_libro + ')">Seleccionar</a></td>' + '</tr>';
 //        cuerpo += registro;
 //    });
-
+    
     document.getElementById("tblLibro").innerHTML = cuerpo;
 }
 
 export function buscar() {
-
+    
     let filtro = document.getElementById("txtBusquedaLibro").value;
     let url;
     let data1;
-    let data2 = null;
-    if (filtro === "")
+    if(filtro==="")
     {
-        url = "api/alumnoLibro/buscar?filtro=" + filtro;
-    } else {
-        url = "api/alumnoLibro/buscar?filtro=" + filtro;
+    url = "api/alumnoLibro/buscarB?filtro="+filtro;
+    }
+    else
+    {
+     url = "api/alumnoLibro/buscarB?filtro=" + filtro;
     }
     fetch(url)
             .then(response => {
@@ -59,7 +59,7 @@ export function buscar() {
             {
                 if (data.exception != null)
                 {
-                    swal.fire('', 'Error interno del servidor. Intente nuevamente más tarde.', 'Error');
+                    swal.fire('', 'Error interno del servidor. Intente nuevamente más tarde.', 'error');
                     return;
                 }
                 if (data.error != null)
@@ -68,18 +68,17 @@ export function buscar() {
                     return;
                 }
                 loadTable(data);
-                // buscar2(data);
+                //buscar2(data);
             });
-
+            
 }
 
 export function buscar2(dataA) {
-
+    
     let filtro = document.getElementById("txtBusquedaLibro").value;
     let url;
-    let data1 = dataA;
-    ;
-    url = "http://192.168.200.138:8082/biblioteca_virtual/api/libro/obtener?" + filtro;
+    let data1=dataA;;
+    url = "http://192.168.200.138:8082/biblioteca_virtual/api/libro/obtener?"+filtro;
     fetch(url)
             .then(response => {
                 return response.json();
@@ -98,22 +97,23 @@ export function buscar2(dataA) {
                 }
                 loadTable(data1, data);
             });
-
+            
 }
+
 export function mostrarDetalle(id) {
-    libros.forEach(function (libro) {
-        if (id === libro.id_libro) {
+    libros.forEach(function (libro){
+        if (id === libro.id_libro){
             document.getElementById("txtCodigoImagen").value = libro.libro;
             document.getElementById("txtIdLibro").value = libro.id_libro;
-
-
+           
+           
             //document.getElementById("imgFoto").src = "data:pdf/" +
             //     getImageFormat(fotoB64) + ";base64," + libro.id_libro;
-            mostrarPDFDesdeBase64();
-            refrescarTabla();
-
-
-
+              mostrarPDFDesdeBase64();
+              refrescarTabla();
+              
+             
+         
         }
     });
 
@@ -122,11 +122,11 @@ export function mostrarDetalle(id) {
 
 
 export function clean() {
-
+    
     document.getElementById("txtIdLibro").value = "";
     document.getElementById("txtCodigoImagen").value = "";
     document.getElementById("imgFoto").setAttribute("src", "");
-
+    
 }
 
 
@@ -145,7 +145,7 @@ function cargarFotografia(objetoInputFile) {
         reader.onload = function (e) {
             fotoB64 = e.target.result;
             document.getElementById("imgFoto").src = fotoB64;
-
+            
             //fotoB64 = fotoB64.substring(fotoB64.indexOf(",") + 1, fotoB64.length);
             document.getElementById("txtCodigoImagen").value =
                     fotoB64.substring(fotoB64.indexOf(",") + 1, fotoB64.length);
@@ -180,15 +180,15 @@ export function getImageFormat(strb64) {
 }
 
 function mostrarPDFDesdeBase64() {
-
+    
     let b64 = document.getElementById("txtCodigoImagen").value;
-
+    
     var bin = atob(b64);
     console.log('File Size:', Math.round(bin.length / 1024), 'KB');
     console.log('PDF Version:', bin.match(/^.PDF-([0-9.]+)/)[1]);
-
+    
     //document.getElementById("imgFoto").src = 'data:application/pdf;base64,' + b64;
-
+    
     var obj = document.createElement('object');
     obj.style.width = '86%';
     obj.style.height = '842pt';
@@ -196,10 +196,11 @@ function mostrarPDFDesdeBase64() {
     obj.type = 'application/pdf';
     obj.data = 'data:application/pdf;base64,' + b64;
     document.body.appendChild(obj);
-
+    
     document.getElementById("tabla").classList.add("d-none");
 
     document.getElementById("txtBusquedaLibro").addEventListener("click", function () {
         document.getElementById("tabla").classList.remove("d-none");
+        document.body.removeChild(obj);
     });
 }

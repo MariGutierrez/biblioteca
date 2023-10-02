@@ -1,9 +1,9 @@
 USE bibliotecavirtual;
 
+select * from libro;
+select * from universidad;
+
 INSERT INTO usuario (id_usuario, nombre_usuario, contrasenia, rol, estatus) VALUES (1,'Maria','Maria2011','Administrador',1);
-
-INSERT INTO universidad (nombre_universidad, pais, estatus)VALUES ('UNAM','México',1);
-
 
 -- Stored Procedure para insertar nuevos Alumnos.
 DROP PROCEDURE IF EXISTS insertarAlumno;
@@ -83,4 +83,4 @@ BEGIN
     END
 $$
 DELIMITER ;
-    
+
