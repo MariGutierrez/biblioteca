@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <link href="styles/css/sweetalert2.css" rel="stylesheet"/>
+        <link href="styles/css/bootstrap.min.css" rel="stylesheet"/>
 
         <style>
             #abrirLogin {
@@ -58,20 +60,22 @@
 
     <script src="js/controllerIndex.js"></script>
     <script>
-        const abrirLogin = document.getElementById("abrirLogin");
-        const login = document.getElementById("login");
+                                            const abrirLogin = document.getElementById("abrirLogin");
+                                            const login = document.getElementById("login");
 
-        abrirLogin.addEventListener("click", () => {
-        login.style.display = "block";
-        login.classList.add("show");
-        document.body.classList.add("modal-open");
-        });
+                                            abrirLogin.addEventListener("click", () => {
+                                                login.style.display = "block";
+                                                login.classList.add("show");
+                                                document.body.classList.add("modal-open");
+                                            });
 
-        login.querySelector(".close").addEventListener("click", () => {
-        login.style.display = "none";
-        login.classList.remove("show");
-        document.body.classList.remove("modal-open");
-        });
+                                            login.querySelector(".close").addEventListener("click", () => {
+                                                login.style.display = "none";
+                                                login.classList.remove("show");
+                                                document.body.classList.remove("modal-open");
+                                            });
     </script>
-
+    <script src="styles/js/sweetalert2.min.js"></script>
+    <script src="styles/js/bootstrap.bundle.min.js"></script>
+    <script src="styles/js/bootstrap.bundle.js"></script>
 </html>
