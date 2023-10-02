@@ -110,5 +110,25 @@ public class RESTAlumno {
         return Response.status(Response.Status.OK).entity(out).build();
 
     }
+    
+    @GET
+    @Path("buscar")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscar(@QueryParam("filtro") @DefaultValue("") String filtro) {
+
+        String out = null;
+        ControllerAlumno ca = null;
+        List<Alumno> alumnos = null;
+
+        try {
+            ca = new ControllerAlumno();
+            alumnos = ca.buscar(filtro);
+            out = new Gson().toJson(alumnos);
+        } catch (Exception e) {
+            e.printStackTrace();
+            out = "{\"exception\":\"Error interno del servidor.\"}";
+        }
+        return Response.status(Response.Status.OK).entity(out).build();
+    }
 
 }

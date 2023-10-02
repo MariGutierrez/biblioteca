@@ -7,20 +7,24 @@ package com.utl.bli.model;
 public class Alumno {
     
     private int id_alumno;
-    private Persona idPersona;
-    private Usuario idUsuario;
+    private Persona persona;
+    private Usuario usuario;
     private String matricula;
-    private int estatus;
 
     public Alumno() {
     }
 
-    public Alumno(int id_alumno, Persona idPersona, Usuario idUsuario, String matricula, int estatus) {
-        this.id_alumno = id_alumno;
-        this.idPersona = idPersona;
-        this.idUsuario = idUsuario;
+    public Alumno(Persona persona, Usuario usuario, String matricula) {
+        this.persona = persona;
+        this.usuario = usuario;
         this.matricula = matricula;
-        this.estatus = estatus;
+    }
+
+    public Alumno(int id_alumno, Persona persona, Usuario usuario, String matricula) {
+        this.id_alumno = id_alumno;
+        this.persona = persona;
+        this.usuario = usuario;
+        this.matricula = matricula;
     }
 
     public int getId_alumno() {
@@ -31,20 +35,20 @@ public class Alumno {
         this.id_alumno = id_alumno;
     }
 
-    public Persona getIdPersona() {
-        return idPersona;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getMatricula() {
@@ -55,19 +59,13 @@ public class Alumno {
         this.matricula = matricula;
     }
 
-    public int getEstatus() {
-        return estatus;
-    }
-
-    public void setEstatus(int estatus) {
-        this.estatus = estatus;
-    }
-
     @Override
     public String toString() {
-        return "Alumno{" + "id_alumno=" + id_alumno + ", idPersona=" + idPersona + ", idUsuario=" + idUsuario + ", matricula=" + matricula + ", estatus=" + estatus + '}';
+        return "Alumno{" + "id_alumno=" + id_alumno + ", persona=" + persona + ", usuario=" + usuario + ", matricula=" + matricula + '}';
     }
     
     
     
+
+
 }

@@ -104,3 +104,23 @@ function cargarModuloBuscarLibroA(){
 
 };
 
+let moduloAlumno;
+function cargarModuloAlumno(){
+    fetch("modulo_alumnos/view_alumno.html")
+        .then(
+            function(response){
+                return response.text();
+            }
+        )
+        .then(
+            function(html){
+                document.getElementById("contPrincipal").innerHTML = html;
+                import ("../modulo_alumnos/controller_alumno.js").then(
+                    function(controller){
+                        moduloAlumno = controller;
+                        moduloAlumno.inicializar();
+                    }
+                );
+            }
+        );
+};
