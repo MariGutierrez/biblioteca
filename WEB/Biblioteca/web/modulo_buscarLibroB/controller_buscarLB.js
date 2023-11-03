@@ -1,4 +1,7 @@
 let libros = [];
+let libros2 = [];
+let libros3 = [];
+let libros4 = [];
 let fotoB64 = null;
 let inputFileArmazon = null;
 
@@ -10,10 +13,12 @@ export function inicializar() {
 }
 
 
-export function loadTable(data) {
+export function loadTable(data, data2, data3, data4) {
     let cuerpo = "";
     libros = data;
-    //libros2 = data2;
+    libros2 = data2;
+    libros3 = data3;
+    libros4 = data4;
 
     libros.forEach(function (Libro) {
         let registro =
@@ -25,15 +30,33 @@ export function loadTable(data) {
         cuerpo += registro;
     });
     
-//    libros2.forEach(function (Libro) {
-//        let registro =
-//                '<tr>' +
-//                '<td>' + Libro.titulo + '</td>' +
-//                '<td>' + Libro.autor + '</td>' +
-//                
-//                '<td><a href="#" onclick="moduloBuscarL.mostrarDetalle(' + Libro.id_libro + ')">Seleccionar</a></td>' + '</tr>';
-//        cuerpo += registro;
-//    });
+    libros2.forEach(function (Libro) {
+        let registro =
+                '<tr>' +
+                '<td>' + Libro.titulo + '</td>' +
+                '<td>' + Libro.autor + '</td>' +
+                '<td>' + Libro.universidad.nombre_universidad + '</td>' +
+                '<td><a href="#" onclick="moduloBuscarL.mostrarDetalle2(' + Libro.id_libro + ')">Seleccionar</a></td>' + '</tr>';
+        cuerpo += registro;
+    });
+    libros3.forEach(function (Libro) {
+        let registro =
+                '<tr>' +
+                '<td>' + Libro.titulo + '</td>' +
+                '<td>' + Libro.autor + '</td>' +
+                '<td>' + Libro.universidad.nombre_universidad + '</td>' +
+                '<td><a href="#" onclick="moduloBuscarL.mostrarDetalle3(' + Libro.id_libro + ')">Seleccionar</a></td>' + '</tr>';
+        cuerpo += registro;
+    });
+    libros4.forEach(function (Libro) {
+        let registro =
+                '<tr>' +
+                '<td>' + Libro.titulo + '</td>' +
+                '<td>' + Libro.autor + '</td>' +
+                '<td>' + Libro.universidad.nombreUniversidad + '</td>' +
+                '<td><a href="#" onclick="moduloBuscarL.mostrarDetalle4(' + Libro.id_libro + ')">Seleccionar</a></td>' + '</tr>';
+        cuerpo += registro;
+    });
     
     document.getElementById("tblLibro").innerHTML = cuerpo;
 }
@@ -67,18 +90,70 @@ export function buscar() {
                     Swal.fire('', data.error, 'warning');
                     return;
                 }
-                loadTable(data);
-                //buscar2(data);
+//                loadTable(data);
+                buscar2(data);
             });
             
 }
-
 export function buscar2(dataA) {
     
     let filtro = document.getElementById("txtBusquedaLibro").value;
     let url;
-    let data1=dataA;;
-    url = "http://192.168.200.138:8082/biblioteca_virtual/api/libro/obtener?"+filtro;
+    url = "http://192.168.137.143:8080/Biblioteca/api/alumnoLibro/buscar?filtro="+filtro;
+//    url = "api/alumnoLibro/buscar?filtro=" + filtro;
+    fetch(url)
+            .then(response => {
+                return response.json();
+            })
+            .then(function (data)
+            {
+                if (data.exception != null)
+                {
+                    swal.fire('', 'Error interno del servidor. Intente nuevamente más tarde.', 'error');
+                    return;
+                }
+                if (data.error != null)
+                {
+                    Swal.fire('', data.error, 'warning');
+                    return;
+                }
+//                loadTable(data);
+                buscar3(dataA, data);
+            });
+            
+}
+export function buscar3(dataA, dataB) {
+    
+    let filtro = document.getElementById("txtBusquedaLibro").value;
+    let url;
+    url = "http://192.168.137.122:8081/Biblioteca/api/alumnoLibro/buscarB?filtro="+filtro;
+    fetch(url)
+            .then(response => {
+                return response.json();
+            })
+            .then(function (data)
+            {
+                if (data.exception != null)
+                {
+                    swal.fire('', 'Error interno del servidor. Intente nuevamente más tarde.', 'error');
+                    return;
+                }
+                if (data.error != null)
+                {
+                    Swal.fire('', data.error, 'warning');
+                    return;
+                }
+//                loadTable(dataA, dataB, data, data);
+                buscar4(dataA,dataB,data);
+            });
+            
+}
+
+export function buscar4(dataA, dataB, dataC) {
+    
+    let filtro = document.getElementById("txtBusquedaLibro").value;
+    let url;
+    url = "http://192.168.137.248:8082/biblioteca_virtual/api/libro/obtenerFiltro?filtro="+filtro;
     fetch(url)
             .then(response => {
                 return response.json();
@@ -95,13 +170,70 @@ export function buscar2(dataA) {
                     Swal.fire('', data.error, 'warning');
                     return;
                 }
-                loadTable(data1, data);
+                loadTable(dataA, dataB, dataC, data);
             });
             
 }
 
 export function mostrarDetalle(id) {
     libros.forEach(function (libro){
+        if (id === libro.id_libro){
+            document.getElementById("txtCodigoImagen").value = libro.libro;
+            document.getElementById("txtIdLibro").value = libro.id_libro;
+           
+           
+            //document.getElementById("imgFoto").src = "data:pdf/" +
+            //     getImageFormat(fotoB64) + ";base64," + libro.id_libro;
+              mostrarPDFDesdeBase64();
+              refrescarTabla();
+              
+             
+         
+        }
+    });
+
+    //document.getElementById("btnDelete").classList.remove("disabled");
+}
+export function mostrarDetalle2(id) {
+    libros2.forEach(function (libro){
+        if (id === libro.id_libro){
+            document.getElementById("txtCodigoImagen").value = libro.libro;
+            document.getElementById("txtIdLibro").value = libro.id_libro;
+           
+           
+            //document.getElementById("imgFoto").src = "data:pdf/" +
+            //     getImageFormat(fotoB64) + ";base64," + libro.id_libro;
+              mostrarPDFDesdeBase64();
+              refrescarTabla();
+              
+             
+         
+        }
+    });
+
+    //document.getElementById("btnDelete").classList.remove("disabled");
+}
+export function mostrarDetalle3(id) {
+    libros3.forEach(function (libro){
+        if (id === libro.id_libro){
+            document.getElementById("txtCodigoImagen").value = libro.libro;
+            document.getElementById("txtIdLibro").value = libro.id_libro;
+           
+           
+            //document.getElementById("imgFoto").src = "data:pdf/" +
+            //     getImageFormat(fotoB64) + ";base64," + libro.id_libro;
+              mostrarPDFDesdeBase64();
+              refrescarTabla();
+              
+             
+         
+        }
+    });
+
+    //document.getElementById("btnDelete").classList.remove("disabled");
+}
+export function mostrarDetalle4(id) {
+    libros4.forEach(function (libro){
         if (id === libro.id_libro){
             document.getElementById("txtCodigoImagen").value = libro.libro;
             document.getElementById("txtIdLibro").value = libro.id_libro;

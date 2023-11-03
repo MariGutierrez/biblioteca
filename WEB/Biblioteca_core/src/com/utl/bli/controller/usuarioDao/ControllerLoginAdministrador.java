@@ -1,74 +1,53 @@
-package com.utl.bli.controller;
+package com.utl.bli.controller.usuarioDao;
 
+import com.utl.bli.appService.UsuariosAppService;
 import com.utl.bli.bd.ConexionMySQL;
 import com.utl.bli.model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import com.utl.bli.controller.usuarioDao.UsuarioDao;
+import com.utl.bli.viewModel.UsuarioPublicViewModel;
 
-/* @author maria*/
-public class ControllerLogin {
-    public Usuario validarSesion(String usuario, String contrasenia) throws SQLException {
-        String sql = "SELECT * FROM usuario "
-                + "WHERE nombre_usuario = " + usuario + " AND contrasenia = " + contrasenia;
+public class ControllerLoginAdministrador {
 
-        ConexionMySQL connMySQL = new ConexionMySQL();
-        Connection conn = connMySQL.open();
-        PreparedStatement pstmt = conn.prepareStatement(sql);
+    public String login(String nombre_usuario, String contrasenia) throws Exception {
 
-        ResultSet rs = pstmt.executeQuery();
+        UsuarioDao usuarioDao = new UsuarioDao();
+        Usuario usu = usuarioDao.BuscarUser(nombre_usuario);
 
-        Usuario u = null;
-        
-        while (rs.next()) {
-            u.setId_usuario(rs.getInt("id_usuario"));
-            u.setNombre_usuario(rs.getString("nombre_usuario"));
-            u.setContrasenia(rs.getString("contrasenia"));
-            u.setRol(rs.getString("rol"));
-            u.setEstatus(rs.getBoolean("estatus"));
-        
+        if (usu != null) {
+            if (usu.getContrasenia().equals(contrasenia)) {
+                return usu.getRol();
+            } else {
+                return "1";
+            }
+        } else {
+            return "0";
         }
-        return u;
-    }
-
-    public Usuario login(String nombre_usuario, String contrasenia) throws Exception {
-
-        String sql = "SELECT * FROM usuario WHERE nombre_usuario = ? AND contrasenia = ?;";
-        
-        ConexionMySQL connMySQL = new ConexionMySQL();
-        Connection conn = connMySQL.open();
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        ResultSet rs = null;  
-        
-        pstmt.setString(1, nombre_usuario);
-        pstmt.setString(2, contrasenia);
-        
-        rs = pstmt.executeQuery();
-        
-        Usuario usu= null;
-        
-        if (rs.next())
-        {
-            usu = fill(rs);
-        }
-        
-        rs.close();
-        pstmt.close();
-        connMySQL.close();
-        
-        return usu;
     }
     
-    private Usuario fill(ResultSet rs) throws Exception{
-        Usuario u = new Usuario();
-        
-        u.setId_usuario(rs.getInt("id_usuario"));
-        u.setNombre_usuario(rs.getString("nombre_usuario"));
-        u.setContrasenia(rs.getString("contrasenia"));
-        u.setRol(rs.getString("rol"));
-        u.setEstatus(rs.getBoolean("estatus"));
-        
-        return u;
+    public Usuario buscUs(String nombre_usuario) throws Exception {
+
+        UsuariosAppService cl = new UsuariosAppService();
+        Usuario usu = cl.buscarPorCorreo(nombre_usuario);
+
+        if (usu != null) {
+                return usu;
+        } else {
+            return usu;
+        }
+    }
+    
+    public UsuarioPublicViewModel buscUs_vm(String nombre_usuario) throws Exception {
+
+        UsuariosAppService cl = new UsuariosAppService();
+        UsuarioPublicViewModel usu = cl.buscarPorPublic(nombre_usuario);
+        if (usu != null) {
+                return usu;
+        } else {
+            return usu;
+        }
     }
 }

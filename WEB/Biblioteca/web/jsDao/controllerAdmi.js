@@ -24,15 +24,13 @@ function ingresar() {
     let datos = null;
     let params = null;
     let usuario = document.getElementById("usuario").value;
-    let contrasenia = document.getElementById("contrasena").value;
     datos = {
-        nombre_usuario: usuario,
-        contrasenia: contrasenia
+        nombre_usuario: usuario
     };
     params = new URLSearchParams(datos);
     console.log(datos);
 
-    fetch("api/log/in", {
+    fetch("api/Busc/User", {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
         body: params

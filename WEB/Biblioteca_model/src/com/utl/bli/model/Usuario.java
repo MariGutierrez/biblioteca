@@ -10,19 +10,43 @@ public class Usuario {
     private String nombre_usuario;
     private String contrasenia;
     private String rol;
+    private String rfc;
+    private String telefono;
     private boolean estatus; 
 
     public Usuario() {
     }
 
-    public Usuario(int id_usuario, String nombre_usuario, String contrasenia, String rol, boolean estatus) {
+    public Usuario(int id_usuario, String nombre_usuario, String contrasenia, String rol, String rfc, String telefono, boolean estatus) {
         this.id_usuario = id_usuario;
         this.nombre_usuario = nombre_usuario;
         this.contrasenia = contrasenia;
         this.rol = rol;
+        this.rfc = rfc;
+        this.telefono = telefono;
         this.estatus = estatus;
     }
 
+    
+
+    public String getRfc() {
+        return rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    
+    
     public int getId_usuario() {
         return id_usuario;
     }
@@ -56,7 +80,7 @@ public class Usuario {
     }
 
     
-    public boolean isEstatus() {
+    public boolean getEstatus() {
         return estatus;
     }
 
